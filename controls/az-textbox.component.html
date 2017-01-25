@@ -1,0 +1,6 @@
+<div *ngIf="visible">
+    <input type="text" #textbox [value]="text" (keyup)="onTextChanged($event)" [disabled]="!enabled" />
+</div>
+<div *ngIf="!visible">
+    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+</div>

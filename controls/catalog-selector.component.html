@@ -1,0 +1,58 @@
+<div class="input-group">
+    <input type="text" class="form-control" [value]="displayValue" readonly>
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="showListDialog()" *ngIf="enabled">
+            <span class="glyphicon glyphicon-list-alt"></span>
+        </button>
+        <button class="btn btn-default" type="button" (click)="clear()" *ngIf="selectedItem != null && enabled">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </span>
+</div>
+
+<div bsModal #listDialog="bs-modal" (onShown)="refreshControls()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="hideListDialog()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{dialogTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <!--Toolbar-->
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-default" (click)="selectItem(selectedRow)" [disabled]="selectedRow == null">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Aceptar
+                    </button>
+                    <button type="button" class="btn btn-default" (click)="hideListDialog()">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar
+                    </button>
+                </div>
+
+                <azteca-catalog-list [catalogList]="catalogList"
+                                     (searchRequested)="searchRequestedHandler($event)"                                     
+                                     (itemSelected)="selectItem($event)"
+                                     (currentItemChanged)="currentItemChangedHandler($event)"
+                                     [serverSide]="serverSide"
+                                     [pageSize]="pageSize"
+                                     [totalRows]="totalRows"
+                                     [pageIndex]="pageIndex">
+
+
+                    <azteca-grid-column *ngFor="let col of columns"
+                                        [header]="col.header"
+                                        [binding]="col.binding"
+                                        [width]="col.width">
+
+                    </azteca-grid-column>
+
+                </azteca-catalog-list>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

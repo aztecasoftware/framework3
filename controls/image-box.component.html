@@ -1,0 +1,15 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-default" title="Seleccionar imágen" (click)="selectFile()" *ngIf="enabled">
+        <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-default" title="Quitar imágen" (click)="removeFile()" *ngIf="enabled && imageFile && (imageFile.Content != undefined || imageFile.FileUri != '')">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <img class="img-responsive img-rounded" [src]="imageSrc" />
+        <input type="file" #fileInput (change)="fileChangedHandler($event)" style="visibility:hidden; width:10px;height:1px;" />
+    </div>
+</div>
