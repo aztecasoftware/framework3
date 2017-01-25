@@ -1,0 +1,27 @@
+<azteca-catalog-manager (searchRequested)="doSearch($event)"
+                        (addingItem)="onAddingItem()"
+                        (viewingItem)="onViewingItem($event)"
+                        (editingItem)="onEditingItem($event)"
+                        (deletingItem)="onDeletingItem($event)"
+                        (cloningItem)="onCloningItem($event)"
+                        (changingItemState)="onChangingItemState($event)"
+                        (configureCatalog)="onConfigureCatalog($event)"
+                        [enabled]="enabled"
+                        [allowNew]="allowNew"
+                        [allowView]="allowView"
+                        [allowEdit]="allowEdit"
+                        [allowDelete]="allowDelete"
+                        [allowClone]="allowClone"
+                        [allowChangeState]="allowChangeState"
+                        [catalogList]="empresas" 
+                        [totalRows]="totalRows"
+                        [pageIndex]="pageIndex">
+
+    <azteca-grid-column [header]="'ID'" [binding]="'id'" dataType="Number" [width]="'10*'"></azteca-grid-column>
+    <azteca-grid-column [header]="'Codigo'" [binding]="'codigo'" [width]="'10*'"></azteca-grid-column>
+    <azteca-grid-column [header]="'Nombre'" [binding]="'nombre'" [width]="'60*'"></azteca-grid-column>
+    <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'20*'"></azteca-grid-column>
+
+</azteca-catalog-manager>
+
+

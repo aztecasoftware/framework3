@@ -1,0 +1,1 @@
+{"version":3,"sources":["kernel/utils/alert.ts"],"names":[],"mappings":";AAAA;IAAA;IAKA,CAAC;IAAD,YAAC;AAAD,CALA,AAKC,IAAA;AALY,sBAAK","file":"alert.js","sourcesContent":["export class Alert {\r\n    type: string;\r\n    msg: string;\r\n    closable?: boolean;\r\n    dismissOnTimeout?: number;\r\n}"]}

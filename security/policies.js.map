@@ -1,0 +1,1 @@
+{"version":3,"sources":["kernel/security/policies.ts"],"names":[],"mappings":";AAAA;IAAA;IAIA,CAAC;IAAD,eAAC;AAAD,CAJA,AAIC;AAHmB,gBAAO,GAAW,SAAS,CAAC;AAC5B,gBAAO,GAAW,SAAS,CAAC;AAFnC,4BAAQ","file":"policies.js","sourcesContent":["export class Policies {\r\n    static readonly enabled: string = \"enabled\";\r\n    static readonly visible: string = \"visible\";\r\n\r\n}"]}
