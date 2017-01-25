@@ -1,0 +1,1 @@
+{"version":3,"sources":["kernel/custom/index.ts"],"names":[],"mappings":";;;;AAAA,sCAAiC","file":"index.js","sourcesContent":["export * from './custom-catalog';"]}

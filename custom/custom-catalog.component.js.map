@@ -1,0 +1,1 @@
+{"version":3,"sources":["kernel/custom/custom-catalog.component.ts"],"names":[],"mappings":";AAAA;IAAA;IAEA,CAAC;IAAD,6BAAC;AAAD,CAFA,AAEC,IAAA;AAFY,wDAAsB","file":"custom-catalog.component.js","sourcesContent":["export class CustomCatalogComponent {\r\n\r\n}"]}

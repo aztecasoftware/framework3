@@ -1,0 +1,1 @@
+{"version":3,"sources":["kernel/editors/editor-event-args.ts"],"names":[],"mappings":";AAEA;IAAA;IAGA,CAAC;IAAD,sBAAC;AAAD,CAHA,AAGC,IAAA;AAHY,0CAAe","file":"editor-event-args.js","sourcesContent":["import { CatalogInfo } from '../entities';\r\n\r\nexport class EditorEventArgs {\r\n    info: CatalogInfo;\r\n    closeEditor: boolean;\r\n}"]}

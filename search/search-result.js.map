@@ -1,0 +1,1 @@
+{"version":3,"sources":["kernel/search/search-result.ts"],"names":[],"mappings":";AAAA;IAAA;IAGA,CAAC;IAAD,mBAAC;AAAD,CAHA,AAGC,IAAA;AAHY,oCAAY","file":"search-result.js","sourcesContent":["export class SearchResult {\r\n    totalRows: number;\r\n    rows: any[];\r\n}"]}

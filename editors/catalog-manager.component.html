@@ -1,0 +1,89 @@
+<!--Pool de alertas-->
+<alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissible="true" [dismissOnTimeout]="alert.dismissOnTimeout" (close)="closeAlert(i)">
+    {{ alert?.msg }}
+</alert>
+
+<div class="row">
+    <div [ngClass]="{'col-xs-12 col-md-10 col-lg-10': standAlone}">
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" (click)="newItemHandler()" *ngIf="enabled && allowNew">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo
+            </button>
+            <button type="button" class="btn btn-default" (click)="triggerSearch()">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualizar
+            </button>
+            <wj-menu #menu
+                     (itemClicked)="menuItemClicked(menu, $event)"
+                     (isDroppedDownChanging)="onIsDroppedDown(menu, $event)"                     
+                     [isDisabled]="!enabled"
+                     [header]="'Opciones'" 
+                     [itemsSource]="menuItems">
+
+                <template wjItemTemplate let-item="item" let-itemIndex="index">
+                    <div *ngIf="enabled && item.enabled">
+                        <span [class]="item.icon"></span>
+                        <b>{{item.text}}</b>
+                        <br>
+                        <small><i>{{item.smallText}}</i></small>
+                    </div>
+                </template>
+
+            </wj-menu>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div [ngClass]="classMap">
+
+        <azteca-catalog-list [catalogList]="catalogList"
+                             (searchRequested)="searchRequestedHandler($event)"
+                             (currentItemChanged)="currentItemChangedHandler($event)"
+                             (contextMenuClick)="optionClick($event)"
+                             (contextMenuOpen)="onValidateMenu($event)"
+                             [enabled]="enabled"
+                             [contextMenuItems]="menuItems"
+                             [serverSide]="serverSide"
+                             [pageSize]="pageSize"
+                             [totalRows]="totalRows"
+                             [pageIndex]="pageIndex">
+
+
+            <azteca-grid-column *ngFor="let col of columns"
+                                [header]="col.header"
+                                [binding]="col.binding"
+                                [dataType]="col.dataType"
+                                [width]="col.width">
+
+                <!-- Add cell template if col.cellTemplate is specified. -->
+                <template wjFlexGridCellTemplate *ngIf="col.cellTemplate" [cellType]="'Cell'" let-cell="cell">
+                    <!-- Load the component whose type is specified in col.cellTemplate -->
+                    <wj-component-loader [component]="col.cellTemplate" [properties]="{cell: cell}"></wj-component-loader>
+                </template>
+
+            </azteca-grid-column>
+
+        </azteca-catalog-list>
+    </div>
+</div>
+
+
+<div bsModal #confirmDelDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div>¿Está seguro que desea eliminar el elemento seleccionado?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="hideDeleteDialog()">Cancelar</button>
+                <button type="button" class="btn btn-default" (click)="deleteItem()">Aceptar</button>                
+            </div>
+
+        </div>
+    </div>
+
+</div>    
