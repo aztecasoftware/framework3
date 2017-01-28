@@ -139,5 +139,6 @@ var Application = (function () {
     });
     return Application;
 }());
+exports.Application = Application;
 
 //# sourceMappingURL=context.js.map

@@ -8,15 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 //
-var index_1 = require("./index");
+var empresas_manager_1 = require("./empresas.manager");
+var empresas_editor_1 = require("./empresas.editor");
+var sucursales_editor_1 = require("./sucursales.editor");
+var sucursales_manager_1 = require("./sucursales.manager");
 var routes = [
     {
         path: 'kernel/security',
         children: [
-            { path: 'empresas', component: index_1.EmpresasManager },
-            { path: 'empresas/:id', component: index_1.EmpresasEditor },
-            { path: 'sucursales', component: index_1.SucursalesManager },
-            { path: 'sucursales/:idEmpresa/:id', component: index_1.SucursalesEditor }
+            { path: 'empresas', component: empresas_manager_1.EmpresasManager },
+            { path: 'empresas/:id', component: empresas_editor_1.EmpresasEditor },
+            { path: 'sucursales', component: sucursales_manager_1.SucursalesManager },
+            { path: 'sucursales/:idEmpresa/:id', component: sucursales_editor_1.SucursalesEditor }
         ]
     },
 ];

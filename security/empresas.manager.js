@@ -20,7 +20,7 @@ var router_1 = require("@angular/router");
 var index_1 = require("../index");
 var index_2 = require("../editors/index");
 //Locales
-var index_3 = require("./index");
+var empresa_1 = require("./empresa");
 var EmpresasManager = EmpresasManager_1 = (function (_super) {
     __extends(EmpresasManager, _super);
     //    
@@ -92,11 +92,11 @@ EmpresasManager = EmpresasManager_1 = __decorate([
                 provide: index_1.BaseComponent, useExisting: core_1.forwardRef(function () { return EmpresasManager_1; })
             },
             {
-                provide: index_1.CatalogService, useExisting: index_3.EmpresaService
+                provide: index_1.CatalogService, useExisting: empresa_1.EmpresaService
             }
         ]
     }),
-    __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, index_1.Context, index_3.EmpresaService])
+    __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, index_1.Context, empresa_1.EmpresaService])
 ], EmpresasManager);
 exports.EmpresasManager = EmpresasManager;
 var EmpresasManager_1;
