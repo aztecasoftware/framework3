@@ -26,11 +26,16 @@ var empresa_1 = require("./empresa");
 var sucursal_1 = require("./sucursal");
 var proceso_1 = require("./proceso");
 var usuario_1 = require("./usuario");
+var grupo_1 = require("./grupo");
 //Components
 var empresas_manager_1 = require("./empresas.manager");
 var empresas_editor_1 = require("./empresas.editor");
 var sucursales_manager_1 = require("./sucursales.manager");
 var sucursales_editor_1 = require("./sucursales.editor");
+var grupos_manager_1 = require("./grupos.manager");
+var grupos_editor_1 = require("./grupos.editor");
+var COMPONENTES = [empresas_manager_1.EmpresasManager, empresas_editor_1.EmpresasEditor, sucursales_manager_1.SucursalesManager, sucursales_editor_1.SucursalesEditor, grupos_manager_1.GruposManager, grupos_editor_1.GruposEditor];
+var SERVICIOS = [empresa_1.EmpresaService, sucursal_1.SucursalService, proceso_1.ProcesoService, usuario_1.UsuarioService, grupo_1.GrupoService];
 var SecurityModule = (function () {
     function SecurityModule() {
     }
@@ -44,20 +49,9 @@ SecurityModule = __decorate([
             security_routing_module_1.SecurityRoutingModule, utils_module_1.UtilsModule, search_module_1.SearchModule, editors_module_1.EditorsModule, controls_module_1.ControlsModule, general_module_1.GeneralModule,
             wijmo_angular2_core_1.WjCoreModule, wijmo_angular2_input_1.WjInputModule, wijmo_angular2_grid_1.WjGridModule, wijmo_angular2_grid_filter_1.WjGridFilterModule
         ],
-        declarations: [
-            empresas_manager_1.EmpresasManager, empresas_editor_1.EmpresasEditor,
-            sucursales_manager_1.SucursalesManager, sucursales_editor_1.SucursalesEditor
-        ],
-        providers: [
-            empresa_1.EmpresaService,
-            sucursal_1.SucursalService,
-            proceso_1.ProcesoService,
-            usuario_1.UsuarioService
-        ],
-        exports: [
-            empresas_manager_1.EmpresasManager, empresas_editor_1.EmpresasEditor,
-            sucursales_manager_1.SucursalesManager, sucursales_editor_1.SucursalesEditor
-        ]
+        declarations: COMPONENTES,
+        providers: SERVICIOS,
+        exports: COMPONENTES
     })
 ], SecurityModule);
 exports.SecurityModule = SecurityModule;

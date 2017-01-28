@@ -13,46 +13,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+//Frameworks
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-//
+//Azteca Kernel
 var context_1 = require("../context");
 var entities_1 = require("../entities");
-//
-var empresa_1 = require("./empresa");
-//////////////////////////// MODELS /////////////////////////////////////////////////////
-var SucursalInfo = (function (_super) {
-    __extends(SucursalInfo, _super);
-    function SucursalInfo() {
-        var _this = _super.call(this) || this;
-        _this.empresa = new empresa_1.EmpresaInfo();
-        return _this;
+var GrupoInfo = (function (_super) {
+    __extends(GrupoInfo, _super);
+    function GrupoInfo() {
+        return _super.call(this) || this;
     }
-    return SucursalInfo;
+    return GrupoInfo;
 }(entities_1.CatalogInfo));
-exports.SucursalInfo = SucursalInfo;
-var SucursalItem = (function () {
-    function SucursalItem() {
+exports.GrupoInfo = GrupoInfo;
+var GrupoItem = (function () {
+    function GrupoItem() {
     }
-    return SucursalItem;
+    return GrupoItem;
 }());
-exports.SucursalItem = SucursalItem;
-//////////////////////////// SERVICES /////////////////////////////////////////////////////
-var SucursalService = (function (_super) {
-    __extends(SucursalService, _super);
-    function SucursalService(http, context) {
-        return _super.call(this, http, context, "api/kernel/security/sucursales") || this;
+exports.GrupoItem = GrupoItem;
+var GrupoService = (function (_super) {
+    __extends(GrupoService, _super);
+    function GrupoService(http, context) {
+        return _super.call(this, http, context, 'api/kernel/security/grupos') || this;
     }
-    SucursalService.prototype.create = function () {
-        return Promise.resolve(new SucursalInfo());
+    GrupoService.prototype.create = function () {
+        return Promise.resolve(new GrupoInfo());
     };
-    return SucursalService;
+    GrupoService.prototype.getMembers = function (idGrupo) {
+        var params = new http_1.URLSearchParams();
+        params.set('idGrupo', idGrupo.toString());
+        return this.apiService.getData('get-members', params)
+            .map(function (response) { return response.json(); })
+            .toPromise();
+    };
+    return GrupoService;
 }(entities_1.CatalogService));
-SucursalService = __decorate([
+GrupoService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http, context_1.Context])
-], SucursalService);
-exports.SucursalService = SucursalService;
+], GrupoService);
+exports.GrupoService = GrupoService;
 
-//# sourceMappingURL=sucursal.js.map
+//# sourceMappingURL=grupo.js.map

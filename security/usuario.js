@@ -16,8 +16,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-var webapi_1 = require("../webapi");
+//
 var context_1 = require("../context");
+var webapi_1 = require("../webapi");
 var entities_1 = require("../entities");
 //////////////////////////// MODELS /////////////////////////////////////////////////////
 var UsuarioInfo = (function (_super) {
@@ -28,6 +29,12 @@ var UsuarioInfo = (function (_super) {
     return UsuarioInfo;
 }(entities_1.CatalogInfo));
 exports.UsuarioInfo = UsuarioInfo;
+var UsuarioItem = (function () {
+    function UsuarioItem() {
+    }
+    return UsuarioItem;
+}());
+exports.UsuarioItem = UsuarioItem;
 //////////////////////////// SERVICES /////////////////////////////////////////////////////
 var UsuarioService = (function (_super) {
     __extends(UsuarioService, _super);

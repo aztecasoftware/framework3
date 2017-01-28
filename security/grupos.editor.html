@@ -1,0 +1,46 @@
+<form [formGroup]="catalogForm">
+    <azteca-catalog-editor #catalogEditor
+                           [title]="'Grupo de Usuarios'"
+                           [info]="grupo"
+                           [catalogForm]="catalogForm"
+                           (configureCatalog)="onConfigureCatalog($event)"
+                           (creatingItem)="onCreatingItem()"
+                           (viewingItem)="onViewingItem($event)"
+                           (cloningItem)="onCloningItem($event)"
+                           (savingItem)="onSavingItem($event)"
+                           (loadingItem)="onLoadingItem($event)">
+
+        <div class="row">
+
+            <div class="col-xs-10 col-md-10">
+                <azteca-form-field [label]="'Código:'">
+                    <az-textbox formControlName="codigo" [(ngModel)]="grupo.code"></az-textbox>
+                </azteca-form-field>
+
+                <azteca-form-field [label]="'Nombre:'">
+                    <az-textbox formControlName="nombre" [(ngModel)]="grupo.nombre"></az-textbox>
+                </azteca-form-field>
+
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-xs-10">
+                <tabset>
+                    <tab heading="Accesos" [disabled]="grupo.identity == 0" (select)="selectTab()">
+
+                    </tab>
+
+                    <tab heading="Políticas" [disabled]="grupo.identity == 0" (select)="selectTab()">
+
+                    </tab>
+
+                    <tab heading="Miembros" [disabled]="grupo.identity == 0" (select)="selectTab()">
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+
+    </azteca-catalog-editor>
+</form>
