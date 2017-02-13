@@ -1,3 +1,3 @@
-export * from './catalog-list.component';
-export * from './search-request';
-export * from './search-result';
+export * from './models/search-request';
+export * from './models/search-result';
+export * from './components/catalog-list.component';

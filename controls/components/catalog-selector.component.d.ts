@@ -1,0 +1,31 @@
+import { EventEmitter, QueryList } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap';
+import { Context, CatalogInfo, CatalogItem } from '../../index';
+import { SearchRequest } from '../../search/index';
+import { GridColumn } from '../directives/grid-column';
+export declare class CatalogSelectorComponent {
+    private context;
+    selectedRow: CatalogItem;
+    enabled: boolean;
+    visible: boolean;
+    selectedItem: CatalogInfo;
+    displayValue: string;
+    catalogList: CatalogItem[];
+    serverSide: boolean;
+    pageIndex: number;
+    pageSize: number;
+    totalRows: number;
+    dialogTitle: string;
+    searchRequested: EventEmitter<SearchRequest>;
+    selectedItemChanged: EventEmitter<CatalogItem>;
+    listDialog: ModalDirective;
+    columns: QueryList<GridColumn>;
+    constructor(context: Context);
+    showListDialog(): void;
+    hideListDialog(): void;
+    searchRequestedHandler(request: SearchRequest): void;
+    currentItemChangedHandler(item: CatalogItem): void;
+    selectItem(item: CatalogItem): void;
+    clear(): void;
+    refreshControls(): void;
+}

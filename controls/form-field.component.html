@@ -1,7 +1,0 @@
-<div class="form-group form-group-sm">
-    <label for="for" class="control-label" *ngIf="label">{{label}}</label>
-    <ng-content></ng-content>        
-    
-    <div [hidden]="state.control.valid || state.control.pristine" class="alert alert-danger">El campo es requerido</div>
-    
-</div>

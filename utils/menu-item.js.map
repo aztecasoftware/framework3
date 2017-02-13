@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../Scripts/app/kernel/utils/menu-item.ts"],"names":[],"mappings":";AAAA;IAAA;QAKI,YAAO,GAAa,IAAI,CAAC;IAC7B,CAAC;IAAD,eAAC;AAAD,CANA,AAMC,IAAA;AANY,4BAAQ","file":"menu-item.js","sourcesContent":["export class MenuItem {\r\n    icon?: string;\r\n    text: string;\r\n    smallText?: string;\r\n    tag: string;\r\n    enabled?: boolean = true;\r\n}"]}

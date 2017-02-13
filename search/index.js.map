@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../Scripts/app/kernel/search/index.ts"],"names":[],"mappings":";;;;AAAA,8CAAyC;AACzC,sCAAiC;AACjC,qCAAgC","file":"index.js","sourcesContent":["export * from './catalog-list.component';\r\nexport * from './search-request';\r\nexport * from './search-result';"]}

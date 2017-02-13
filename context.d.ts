@@ -1,6 +1,6 @@
 import { SessionInfo } from './security/session';
-import { EmpresaInfo } from './security/empresa';
-import { SucursalInfo } from './security/sucursal';
+import { EmpresaInfo } from './security/models/empresa';
+import { SucursalInfo } from './security/models/sucursal';
 export declare class Context {
     private _session;
     private _application;

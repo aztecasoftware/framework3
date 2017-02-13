@@ -1,5 +1,5 @@
 import { QueryList } from '@angular/core';
-import { PolicyInfo } from './security/policy';
+import { PolicyInfo } from './security/models/policy';
 export declare abstract class BaseComponent {
     appliedPolicies: PolicyInfo[];
     name: string;

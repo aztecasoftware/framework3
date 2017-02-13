@@ -1,4 +1,4 @@
-import { UsuarioInfo } from './usuario';
+import { UsuarioInfo } from './models/usuario';
 export declare class SessionInfo {
     sessionID: string;
     user: UsuarioInfo;

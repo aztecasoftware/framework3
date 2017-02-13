@@ -1,9 +1,0 @@
-<div *ngIf="visible">
-	<select #combobox [(ngModel)]="selectedItem" [value]="value" (change)="onChange($event)" [disabled]="!enabled">
-        <option *ngFor="let item of items; le i = index" [value]="item[valueMember]" [ngValue]="item">{{item[displayMember]}}</option>
-		<ng-content></ng-content>
-	</select>    
-</div>
-<div *ngIf="!visible">
-    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-</div>

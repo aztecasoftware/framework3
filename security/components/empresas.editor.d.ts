@@ -1,0 +1,34 @@
+import { ChangeDetectorRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Context } from '../../index';
+import { CatalogOptions } from '../../custom/index';
+import { CatalogEditor, EditorEventArgs } from '../../editors/index';
+import { EmpresaInfo } from '../models/empresa';
+import { EmpresaService } from '../services/empresa.service';
+import { SucursalItem } from '../models/sucursal';
+import { SucursalService } from '../services/sucursal.service';
+import { SucursalesManager } from './sucursales.manager';
+export declare class EmpresasEditor extends CatalogEditor {
+    private router;
+    private route;
+    private formBuilder;
+    protected changeDetector: ChangeDetectorRef;
+    protected context: Context;
+    private empresaService;
+    private sucursalService;
+    private location;
+    empresa: EmpresaInfo;
+    sucursales: SucursalItem[];
+    siteManager: SucursalesManager;
+    constructor(router: Router, route: ActivatedRoute, formBuilder: FormBuilder, changeDetector: ChangeDetectorRef, context: Context, empresaService: EmpresaService, sucursalService: SucursalService, location: Location);
+    onConfigureCatalog(options: CatalogOptions): void;
+    onCreatingItem(): void;
+    onViewingItem(id: number): void;
+    onCloningItem(id: number): void;
+    onLoadingItem(id: number): void;
+    onSavingItem(args: EditorEventArgs): void;
+    selectSucursalesTab(): void;
+    loadSucursales(): void;
+}

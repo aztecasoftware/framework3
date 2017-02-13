@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../Scripts/app/kernel/index.ts"],"names":[],"mappings":";;;;AAAA,qCAAgC;AAChC,sCAAiC;AACjC,+BAA0B;AAC1B,gCAA2B;AAC3B,8BAAyB","file":"index.js","sourcesContent":["export * from './kernel.module';\r\nexport * from './base-component';\r\nexport * from './context';\r\nexport * from './entities';\r\nexport * from './webapi';\r\n"]}

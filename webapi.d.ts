@@ -10,5 +10,6 @@ export declare class WebService {
     query(params: URLSearchParams): Observable<Response>;
     getData(action: string, params: URLSearchParams): Observable<Response>;
     postData(action: string, params: URLSearchParams, body: any): Observable<Response>;
+    putData(action: string, params: URLSearchParams, body: any): Observable<Response>;
     delete(action: string, params: URLSearchParams): Observable<Response>;
 }

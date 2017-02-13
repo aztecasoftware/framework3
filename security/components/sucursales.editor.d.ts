@@ -1,0 +1,30 @@
+import { ChangeDetectorRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Context } from '../../index';
+import { CatalogOptions } from '../../custom/index';
+import { CatalogEditor, EditorEventArgs } from '../../editors/index';
+import { SucursalInfo } from '../models/sucursal';
+import { SucursalService } from '../services/sucursal.service';
+import { EmpresaService } from '../services/empresa.service';
+export declare class SucursalesEditor extends CatalogEditor {
+    protected context: Context;
+    private router;
+    private route;
+    private location;
+    private formBuilder;
+    protected changeDetector: ChangeDetectorRef;
+    private sucursalService;
+    private empresaService;
+    sucursal: SucursalInfo;
+    idEmpresa: number;
+    constructor(context: Context, router: Router, route: ActivatedRoute, location: Location, formBuilder: FormBuilder, changeDetector: ChangeDetectorRef, sucursalService: SucursalService, empresaService: EmpresaService);
+    onConfigureCatalog(options: CatalogOptions): void;
+    onCreatingItem(): void;
+    onViewingItem(id: number): void;
+    onCloningItem(id: number): void;
+    onLoadingItem(id: number): void;
+    onSavingItem(args: EditorEventArgs): void;
+    selectMiembrosTab(): void;
+}
