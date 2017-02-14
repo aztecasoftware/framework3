@@ -4,4 +4,3 @@ class SessionInfo {
     }
 }
 exports.SessionInfo = SessionInfo;
-//# sourceMappingURL=session.js.map

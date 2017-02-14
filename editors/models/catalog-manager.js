@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
-const index_1 = require('../../index');
-const catalog_manager_component_1 = require('../components/catalog-manager.component');
-const policies_1 = require('../../security/models/policies');
+const index_1 = require("../../index");
+const catalog_manager_component_1 = require("../components/catalog-manager.component");
+const policies_1 = require("../../security/models/policies");
 class CatalogManager extends index_1.BaseComponent {
     constructor(context) {
         super();
@@ -50,44 +50,43 @@ class CatalogManager extends index_1.BaseComponent {
     }
 }
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogManager.prototype, "pageIndex", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogManager.prototype, "totalRows", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "enabled", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "allowNew", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "allowView", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "allowEdit", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "allowDelete", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "allowClone", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManager.prototype, "allowChangeState", void 0);
 __decorate([
-    core_1.ViewChild(catalog_manager_component_1.CatalogManagerComponent), 
-    __metadata('design:type', catalog_manager_component_1.CatalogManagerComponent)
+    core_1.ViewChild(catalog_manager_component_1.CatalogManagerComponent),
+    __metadata("design:type", catalog_manager_component_1.CatalogManagerComponent)
 ], CatalogManager.prototype, "manager", void 0);
 exports.CatalogManager = CatalogManager;
-//# sourceMappingURL=catalog-manager.js.map

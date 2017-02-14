@@ -1,7 +1,7 @@
 "use strict";
-const index_1 = require('../../index');
+const index_1 = require("../../index");
 //
-const empresa_1 = require('./empresa');
+const empresa_1 = require("./empresa");
 class SucursalInfo extends index_1.CatalogInfo {
     constructor() {
         super();
@@ -12,4 +12,3 @@ exports.SucursalInfo = SucursalInfo;
 class SucursalItem {
 }
 exports.SucursalItem = SucursalItem;
-//# sourceMappingURL=sucursal.js.map

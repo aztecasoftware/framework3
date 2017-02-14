@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
 //
-const base_control_1 = require('../models/base-control');
-const base_component_1 = require('../../base-component');
-const file_1 = require('../../general/models/file');
-const context_1 = require('../../context');
-let ImageBoxComponent_1 = class ImageBoxComponent extends base_control_1.BaseControl {
+const base_control_1 = require("../models/base-control");
+const base_component_1 = require("../../base-component");
+const file_1 = require("../../general/models/file");
+const context_1 = require("../../context");
+let ImageBoxComponent = ImageBoxComponent_1 = class ImageBoxComponent extends base_control_1.BaseControl {
     constructor(renderer, context) {
         super();
         this.renderer = renderer;
@@ -97,34 +97,49 @@ let ImageBoxComponent_1 = class ImageBoxComponent extends base_control_1.BaseCon
     }
     registerOnTouched() { }
 };
-let ImageBoxComponent = ImageBoxComponent_1;
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', file_1.FileInfo)
+    core_1.Input(),
+    __metadata("design:type", file_1.FileInfo)
 ], ImageBoxComponent.prototype, "imageFile", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], ImageBoxComponent.prototype, "fileChanged", void 0);
 __decorate([
-    core_1.ViewChild('fileInput'), 
-    __metadata('design:type', core_1.ElementRef)
+    core_1.ViewChild('fileInput'),
+    __metadata("design:type", core_1.ElementRef)
 ], ImageBoxComponent.prototype, "fileInput", void 0);
 ImageBoxComponent = ImageBoxComponent_1 = __decorate([
     core_1.Component({
         selector: 'azteca-image-box',
-        templateUrl: './image-box.component.html',
+        template: `
+      <div class="btn-group">
+          <button type="button" class="btn btn-default" title="Seleccionar imágen" (click)="selectFile()" *ngIf="enabled">
+              <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-default" title="Quitar imágen" (click)="removeFile()" *ngIf="enabled && imageFile && (imageFile.Content != undefined || imageFile.FileUri != '')">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+      </div>
+
+      <div class="panel panel-default">
+          <div class="panel-body">
+              <img class="img-responsive img-rounded" [src]="imageSrc" />
+              <input type="file" #fileInput (change)="fileChangedHandler($event)" style="visibility:hidden; width:10px;height:1px;" />
+          </div>
+      </div>
+    `,
         providers: [{
                 provide: base_component_1.BaseComponent,
-                useExisting: core_1.forwardRef(() => ImageBoxComponent)
+                useExisting: core_1.forwardRef(() => ImageBoxComponent_1)
             },
             {
                 provide: forms_1.NG_VALUE_ACCESSOR,
-                useExisting: core_1.forwardRef(() => ImageBoxComponent),
+                useExisting: core_1.forwardRef(() => ImageBoxComponent_1),
                 multi: true
             }]
-    }), 
-    __metadata('design:paramtypes', [core_1.Renderer, context_1.Context])
+    }),
+    __metadata("design:paramtypes", [core_1.Renderer, context_1.Context])
 ], ImageBoxComponent);
 exports.ImageBoxComponent = ImageBoxComponent;
-//# sourceMappingURL=image-box.component.js.map
+var ImageBoxComponent_1;

@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-const common_1 = require('@angular/common');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const common_1 = require("@angular/common");
 //
-const index_1 = require('../../index');
-const grupo_service_1 = require('../services/grupo.service');
+const index_1 = require("../../index");
+const grupo_service_1 = require("../services/grupo.service");
 let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseComponent {
     constructor(context, grupoService, router, route, location) {
         super();
@@ -65,9 +65,40 @@ let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseCo
 GrupoMiembrosComponent = __decorate([
     core_1.Component({
         selector: 'security-grupo-miembros',
-        templateUrl: './grupo-miembros.component.html'
-    }), 
-    __metadata('design:paramtypes', [index_1.Context, grupo_service_1.GrupoService, router_1.Router, router_1.ActivatedRoute, common_1.Location])
+        template: `
+      <div class="row">
+          <div class="col-xs-12 col-md-10">
+              <az-panel [header]="'Miembros del grupo -'">
+
+                  <!--Toolbar Principal-->
+                  <az-toolbar (buttonClick)="onToolbarButtonClick($event)">
+                      <az-toolbar-button [name]="'ADD'" [type]="'primary'" [text]="'Agregar Usuarios'" [icon]="'glyphicon glyphicon-plus'"></az-toolbar-button>
+                      <az-toolbar-button [name]="'REFRESH'" [text]="'Actualizar'" [icon]="'glyphicon glyphicon-refresh'"></az-toolbar-button>
+                      <az-toolbar-button [name]="'CLOSE'" [text]="'Regresar'" [icon]="'glyphicon glyphicon-circle-arrow-left'"></az-toolbar-button>
+                  </az-toolbar>
+
+                  <!-- Lista de usuarios-->
+                  <azteca-catalog-list [catalogList]="usuarios"
+                                       (searchRequested)="onSearchRequest($event)"
+                                       [showRowButton]="true"
+                                       [rowButtonIcon]="'glyphicon glyphicon-trash'"
+                                       [enabled]="enabled"
+                                       [pageSize]="15"
+                                       [serverSide]="false">
+
+                      <azteca-grid-column [header]="'Usuario'" [binding]="'codigo'" [width]="'20*'"></azteca-grid-column>
+                      <azteca-grid-column [header]="'Nombre'" [binding]="'nombrePersona'" [width]="'40*'"></azteca-grid-column>
+                      <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'10*'"></azteca-grid-column>
+
+                  </azteca-catalog-list>
+
+
+              </az-panel>
+          </div>
+      </div>
+    `
+    }),
+    __metadata("design:paramtypes", [index_1.Context, grupo_service_1.GrupoService, router_1.Router, router_1.ActivatedRoute,
+        common_1.Location])
 ], GrupoMiembrosComponent);
 exports.GrupoMiembrosComponent = GrupoMiembrosComponent;
-//# sourceMappingURL=grupo-miembros.component.js.map

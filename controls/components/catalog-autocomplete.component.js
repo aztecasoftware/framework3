@@ -8,13 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 //
-const wijmo_input_1 = require('wijmo/wijmo.input');
+const wijmo_input_1 = require("wijmo/wijmo.input");
 //
-const index_1 = require('../../index');
+const index_1 = require("../../index");
 //
 let CatalogAutocompleteComponent = class CatalogAutocompleteComponent {
     //
@@ -55,32 +55,41 @@ let CatalogAutocompleteComponent = class CatalogAutocompleteComponent {
     }
 };
 __decorate([
-    core_1.ViewChild('autocomplete'), 
-    __metadata('design:type', wijmo_input_1.AutoComplete)
+    core_1.ViewChild('autocomplete'),
+    __metadata("design:type", wijmo_input_1.AutoComplete)
 ], CatalogAutocompleteComponent.prototype, "autocomplete", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], CatalogAutocompleteComponent.prototype, "serviceUrl", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', http_1.URLSearchParams)
+    core_1.Input(),
+    __metadata("design:type", http_1.URLSearchParams)
 ], CatalogAutocompleteComponent.prototype, "parameters", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogAutocompleteComponent.prototype, "maxItems", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], CatalogAutocompleteComponent.prototype, "displayMember", void 0);
 CatalogAutocompleteComponent = __decorate([
     core_1.Component({
         selector: 'azteca-catalog-autocomplete',
-        templateUrl: './catalog-autocomplete.component.html',
-        styleUrls: ['./catalog-autocomplete.component.css']
-    }), 
-    __metadata('design:paramtypes', [http_1.Http, index_1.Context])
+        template: `
+      <wj-auto-complete #autocomplete
+                        [isRequired]="true"
+                        [placeholder]="'Introduzca búsqueda...'"
+                        [showDropDownButton]="false">
+      </wj-auto-complete>
+    `,
+        styles: [`
+      .wj-autocomplete {
+          width:100%
+      }
+    `]
+    }),
+    __metadata("design:paramtypes", [http_1.Http, index_1.Context])
 ], CatalogAutocompleteComponent);
 exports.CatalogAutocompleteComponent = CatalogAutocompleteComponent;
-//# sourceMappingURL=catalog-autocomplete.component.js.map

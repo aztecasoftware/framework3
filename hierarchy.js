@@ -1,5 +1,5 @@
 "use strict";
-const catalog_1 = require('./catalog');
+const catalog_1 = require("./catalog");
 /**
  * Modelo básico de una estructura jerárquica
  */
@@ -26,4 +26,3 @@ exports.HierarchyNode = HierarchyNode;
 class HierarchyChanges {
 }
 exports.HierarchyChanges = HierarchyChanges;
-//# sourceMappingURL=hierarchy.js.map

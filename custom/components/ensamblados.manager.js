@@ -9,14 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 //Frameworks
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
 //Azteca Kernel
-const index_1 = require('../../index');
-const index_2 = require('../../editors/index');
+const index_1 = require("../../index");
+const index_2 = require("../../editors/index");
 //Features
-const ensamblado_service_1 = require('../services/ensamblado.service');
-let EnsambladosManager_1 = class EnsambladosManager extends index_2.CatalogManager {
+const ensamblado_service_1 = require("../services/ensamblado.service");
+let EnsambladosManager = EnsambladosManager_1 = class EnsambladosManager extends index_2.CatalogManager {
     //    
     constructor(router, route, context, ensambladoService) {
         super(context);
@@ -71,21 +71,48 @@ let EnsambladosManager_1 = class EnsambladosManager extends index_2.CatalogManag
             .catch(error => this.handleError(error));
     }
 };
-let EnsambladosManager = EnsambladosManager_1;
 EnsambladosManager = EnsambladosManager_1 = __decorate([
     core_1.Component({
         selector: 'custom-ensamblados-manager',
-        templateUrl: './ensamblados.manager.html',
+        template: `
+      <azteca-catalog-manager (searchRequested)="doSearch($event)"
+                              (addingItem)="onAddingItem()"
+                              (viewingItem)="onViewingItem($event)"
+                              (editingItem)="onEditingItem($event)"
+                              (deletingItem)="onDeletingItem($event)"
+                              (cloningItem)="onCloningItem($event)"
+                              (changingItemState)="onChangingItemState($event)"
+      						(configureCatalog)="onConfigureCatalog($event)"
+                              [enabled]="enabled"
+                              [allowNew]="allowNew"
+                              [allowView]="allowView"
+                              [allowEdit]="allowEdit"
+                              [allowDelete]="allowDelete"
+                              [allowClone]="allowClone"
+                              [allowChangeState]="allowChangeState"
+                              [catalogList]="ensamblados"
+                              [totalRows]="totalRows"
+                              [pageIndex]="pageIndex">
+
+
+          <azteca-grid-column [header]="'ID'" [binding]="'id'" dataType="Number" [width]="'10*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Codigo'" [binding]="'codigo'" [width]="'10*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Nombre'" [binding]="'nombre'" [width]="'60*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Ensamblado'" [binding]="'ensamblado'" [width]="'30*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'20*'"></azteca-grid-column>
+
+      </azteca-catalog-manager>
+    `,
         providers: [
             {
-                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => EnsambladosManager)
+                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => EnsambladosManager_1)
             },
             {
                 provide: index_1.CatalogService, useExisting: ensamblado_service_1.EnsambladoService
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, index_1.Context, ensamblado_service_1.EnsambladoService])
+    }),
+    __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, index_1.Context, ensamblado_service_1.EnsambladoService])
 ], EnsambladosManager);
 exports.EnsambladosManager = EnsambladosManager;
-//# sourceMappingURL=ensamblados.manager.js.map
+var EnsambladosManager_1;

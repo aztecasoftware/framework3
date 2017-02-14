@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-const common_1 = require('@angular/common');
-const index_1 = require('../../index');
-const index_2 = require('../../controls/index');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const common_1 = require("@angular/common");
+const index_1 = require("../../index");
+const index_2 = require("../../controls/index");
 let CatalogEditorComponent = class CatalogEditorComponent {
     constructor(router, route, location, context, catalogService) {
         this.router = router;
@@ -117,60 +117,111 @@ let CatalogEditorComponent = class CatalogEditorComponent {
     }
 };
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', index_1.CatalogInfo)
+    core_1.Input(),
+    __metadata("design:type", index_1.CatalogInfo)
 ], CatalogEditorComponent.prototype, "info", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], CatalogEditorComponent.prototype, "title", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogEditorComponent.prototype, "valid", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogEditorComponent.prototype, "enabled", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "configureCatalog", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "creatingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "viewingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "loadingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "cloningItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "savingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogEditorComponent.prototype, "menuItemClick", void 0);
 __decorate([
-    core_1.ContentChildren(index_2.MenuItemDirective), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(index_2.MenuItemDirective),
+    __metadata("design:type", core_1.QueryList)
 ], CatalogEditorComponent.prototype, "menuItems", void 0);
 CatalogEditorComponent = __decorate([
     core_1.Component({
         selector: 'azteca-catalog-editor',
-        templateUrl: './catalog-editor.component.html',
+        template: `
+      <div class="row">
+          <div [ngClass]="widthClass">
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">{{title}}</div>
+
+                  <!--Toolbar-->
+
+                  <div class="btn-group">
+                      <button type="submit" class="btn btn-primary" (click)="saveHandler()" [disabled]="!valid" *ngIf="enabled">
+                          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar
+                      </button>
+                      <button type="button" class="btn btn-default" (click)="saveCloseHanlder()" [disabled]="!valid" *ngIf="enabled">
+                          <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span> Guardar y cerrar
+                      </button>
+                      <button type="button" class="btn btn-default" (click)="closeEditor()">
+                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar
+                      </button>
+
+                      <wj-menu #menu *ngIf="menuItems && menuItems.toArray().length > 0"
+                               (itemClicked)="onMenuItemClicked(menu, $event)"
+                               [isDisabled]="!enabled"
+                               [header]="'Opciones'">
+
+                          <wj-menu-item *ngFor="let item of menuItems">
+                              <div *ngIf="enabled && item.enabled">
+                                  <span [class]="item.icon"></span>
+                                  <b>{{item.text}}</b>
+                                  <br>
+                                  <small><i>{{item.smallText}}</i></small>
+                              </div>
+                          </wj-menu-item>
+                      </wj-menu>
+                  </div>
+
+                  <!--Pool de alertas-->
+                  <alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissible="true" [dismissOnTimeout]="alert.dismissOnTimeout" (close)="closeAlert(i)">
+                      {{ alert?.msg }}
+                  </alert>
+
+                  <div class="panel-body">
+                      <ng-content></ng-content>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+    `,
         changeDetection: core_1.ChangeDetectionStrategy.OnPush
-    }), 
-    __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, common_1.Location, index_1.Context, index_1.CatalogService])
+    }),
+    __metadata("design:paramtypes", [router_1.Router,
+        router_1.ActivatedRoute,
+        common_1.Location,
+        index_1.Context,
+        index_1.CatalogService])
 ], CatalogEditorComponent);
 exports.CatalogEditorComponent = CatalogEditorComponent;
-//# sourceMappingURL=catalog-editor.component.js.map

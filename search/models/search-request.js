@@ -60,4 +60,3 @@ exports.SearchCondition = SearchCondition;
 class SortOrder {
 }
 exports.SortOrder = SortOrder;
-//# sourceMappingURL=search-request.js.map

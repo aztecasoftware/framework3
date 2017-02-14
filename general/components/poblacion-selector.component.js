@@ -8,13 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
 //
-const index_1 = require('../../index');
-const catalog_selector_1 = require('../../controls/models/catalog-selector');
-const poblacion_service_1 = require('../services/poblacion.service');
-let PoblacionSelectorComponent_1 = class PoblacionSelectorComponent extends catalog_selector_1.CatalogSelector {
+const index_1 = require("../../index");
+const catalog_selector_1 = require("../../controls/models/catalog-selector");
+const poblacion_service_1 = require("../services/poblacion.service");
+let PoblacionSelectorComponent = PoblacionSelectorComponent_1 = class PoblacionSelectorComponent extends catalog_selector_1.CatalogSelector {
     constructor(context, poblacionService) {
         super(context);
         this.context = context;
@@ -50,22 +50,42 @@ let PoblacionSelectorComponent_1 = class PoblacionSelectorComponent extends cata
             .catch(error => this.handleError(error));
     }
 };
-let PoblacionSelectorComponent = PoblacionSelectorComponent_1;
 PoblacionSelectorComponent = PoblacionSelectorComponent_1 = __decorate([
     core_1.Component({
         selector: 'poblacion-selector',
-        templateUrl: './poblacion-selector.component.html',
+        template: `
+      <azteca-catalog-selector [catalogList]="poblaciones"
+                               [dialogTitle]="'Poblaciones'"
+                               [displayValue]="displayValue"
+                               [serverSide]="true"
+                               [selectedItem]="selectedItem"
+                               [pageIndex]="pageIndex"
+                               [pageSize]="pageSize"
+                               [totalRows]="totalRows"
+                               [enabled]="enabled"
+                               [visible]="visible"
+                               (selectedItemChanged)="itemChangedHandler($event)"
+                               (searchRequested)="doSearch($event)">
+
+          <azteca-grid-column [header]="'ID'" [binding]="'id'" [dataType]="Number" [width]="'1*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Codigo'" [binding]="'codigo'" [width]="'2*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Nombre'" [binding]="'nombre'" [width]="'3*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Estado'" [binding]="'estado'" [width]="'2*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'2*'"></azteca-grid-column>
+
+      </azteca-catalog-selector>
+    `,
         providers: [{
                 provide: index_1.BaseComponent,
-                useExisting: core_1.forwardRef(() => PoblacionSelectorComponent)
+                useExisting: core_1.forwardRef(() => PoblacionSelectorComponent_1)
             },
             {
                 provide: forms_1.NG_VALUE_ACCESSOR,
-                useExisting: core_1.forwardRef(() => PoblacionSelectorComponent),
+                useExisting: core_1.forwardRef(() => PoblacionSelectorComponent_1),
                 multi: true
             }]
-    }), 
-    __metadata('design:paramtypes', [index_1.Context, poblacion_service_1.PoblacionService])
+    }),
+    __metadata("design:paramtypes", [index_1.Context, poblacion_service_1.PoblacionService])
 ], PoblacionSelectorComponent);
 exports.PoblacionSelectorComponent = PoblacionSelectorComponent;
-//# sourceMappingURL=poblacion-selector.component.js.map
+var PoblacionSelectorComponent_1;

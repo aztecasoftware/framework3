@@ -8,28 +8,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
-const base_control_1 = require('../models/base-control');
-const base_component_1 = require('../../base-component');
-let AzLabelComponent_1 = class AzLabelComponent extends base_control_1.BaseControl {
+const base_control_1 = require("../models/base-control");
+const base_component_1 = require("../../base-component");
+let AzLabelComponent = AzLabelComponent_1 = class AzLabelComponent extends base_control_1.BaseControl {
 };
-let AzLabelComponent = AzLabelComponent_1;
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], AzLabelComponent.prototype, "text", void 0);
 AzLabelComponent = AzLabelComponent_1 = __decorate([
     core_1.Component({
         selector: 'az-label',
-        templateUrl: './az-label.component.html',
+        template: `
+      <div *ngIf="visible">
+          <label class="label label-default">{{text}}</label>
+      </div>
+      <div *ngIf="!visible">
+          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+      </div>
+    `,
         providers: [
             {
-                provide: base_component_1.BaseComponent, useExisting: core_1.forwardRef(() => AzLabelComponent)
+                provide: base_component_1.BaseComponent, useExisting: core_1.forwardRef(() => AzLabelComponent_1)
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [])
+    })
 ], AzLabelComponent);
 exports.AzLabelComponent = AzLabelComponent;
-//# sourceMappingURL=az-label.component.js.map
+var AzLabelComponent_1;

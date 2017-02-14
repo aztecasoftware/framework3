@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 //Azteca Kernel
-const index_1 = require('../../index');
-const usuario_1 = require('../models/usuario');
+const index_1 = require("../../index");
+const usuario_1 = require("../models/usuario");
 let UsuarioService = class UsuarioService extends index_1.CatalogService {
     constructor(http, context) {
         super(http, context, "api/kernel/security/usuarios");
@@ -35,8 +35,7 @@ let UsuarioService = class UsuarioService extends index_1.CatalogService {
     }
 };
 UsuarioService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http, index_1.Context])
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, index_1.Context])
 ], UsuarioService);
 exports.UsuarioService = UsuarioService;
-//# sourceMappingURL=usuario.service.js.map

@@ -8,18 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-const forms_1 = require('@angular/forms');
-const common_1 = require('@angular/common');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const forms_1 = require("@angular/forms");
+const common_1 = require("@angular/common");
 //
-const index_1 = require('../../index');
-const index_2 = require('../../editors/index');
+const index_1 = require("../../index");
+const index_2 = require("../../editors/index");
 //
-const sucursal_1 = require('../models/sucursal');
-const sucursal_service_1 = require('../services/sucursal.service');
-const empresa_service_1 = require('../services/empresa.service');
-let SucursalesEditor_1 = class SucursalesEditor extends index_2.CatalogEditor {
+const sucursal_1 = require("../models/sucursal");
+const sucursal_service_1 = require("../services/sucursal.service");
+const empresa_service_1 = require("../services/empresa.service");
+let SucursalesEditor = SucursalesEditor_1 = class SucursalesEditor extends index_2.CatalogEditor {
     constructor(context, router, route, location, formBuilder, changeDetector, sucursalService, empresaService) {
         super(context, changeDetector);
         this.context = context;
@@ -107,21 +107,136 @@ let SucursalesEditor_1 = class SucursalesEditor extends index_2.CatalogEditor {
     selectMiembrosTab() {
     }
 };
-let SucursalesEditor = SucursalesEditor_1;
 SucursalesEditor = SucursalesEditor_1 = __decorate([
     core_1.Component({
         selector: 'azteca-sucursales-editor',
-        templateUrl: './sucursales.editor.html',
+        template: `
+      <form [formGroup]="catalogForm">
+          <azteca-catalog-editor #catalogEditor
+                                 [title]="'Sucursal'"
+                                 [info]="sucursal"
+                                 [valid]="catalogForm.valid"
+                                 (configureCatalog)="onConfigureCatalog($event)"
+                                 (creatingItem)="onCreatingItem()"
+                                 (viewingItem)="onViewingItem($event)"
+                                 (cloningItem)="onCloningItem($event)"
+                                 (savingItem)="onSavingItem($event)"
+                                 (loadingItem)="onLoadingItem($event)">
+
+              <div class="row">
+
+                  <div class="col-xs-10 col-md-10">
+                      <azteca-form-field [label]="'Código:'">
+                          <az-textbox formControlName="codigo" [(ngModel)]="sucursal.code"></az-textbox>
+                      </azteca-form-field>
+
+                      <azteca-form-field [label]="'Nombre:'">
+                          <az-textbox formControlName="nombre" [(ngModel)]="sucursal.nombre"></az-textbox>
+                      </azteca-form-field>
+
+                      <label class="control-label">Empresa:</label>
+                      <az-label [name]="empresa" [text]="sucursal.empresa.nombre"></az-label>
+
+                  </div>
+              </div>
+              <br />
+
+              <div class="row">
+                  <div class="col-xs-10">
+                      <tabset>
+                          <tab heading="Contacto">
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+                                      <azteca-form-field [label]="'Telefono 1:'">
+                                          <az-textbox formControlName="telefono1" [(ngModel)]="sucursal.telefono1"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+                                      <azteca-form-field [label]="'Telefono 2:'">
+                                          <az-textbox formControlName="telefono2" [(ngModel)]="sucursal.telefono2"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+                                      <azteca-form-field [label]="'Fax:'">
+                                          <az-textbox formControlName="fax" [(ngModel)]="sucursal.fax"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+                                      <azteca-form-field [label]="'Página Web:'">
+                                          <az-textbox formControlName="paginaWeb" [(ngModel)]="sucursal.paginaWeb"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+                                      <azteca-form-field [label]="'Correo:'">
+                                          <az-textbox formControlName="correo" [(ngModel)]="sucursal.correo"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                          </tab>
+
+                          <tab heading="Domicilio">
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+                                      <azteca-form-field [label]="'Calle:'">
+                                          <az-textbox formControlName="calle" [(ngModel)]="sucursal.calle"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-5 col-md-4">
+                                      <azteca-form-field [label]="'Número Exterior:'">
+                                          <az-textbox formControlName="numExt" [(ngModel)]="sucursal.numExt"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                                  <div class="col-xs-5 col-md-4">
+                                      <azteca-form-field [label]="'Número Interior:'">
+                                          <az-textbox formControlName="numInt" [(ngModel)]="sucursal.numInt"></az-textbox>
+                                      </azteca-form-field>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-10 col-md-8">
+
+                                      <azteca-form-field [label]="'Colonia:'">
+                                          <az-textbox formControlName="colonia" [(ngModel)]="sucursal.colonia"></az-textbox>
+                                      </azteca-form-field>
+
+                                      <azteca-form-field [label]="'Población:'">
+                                          <poblacion-selector formControlName="poblacion" [(ngModel)]="sucursal.idPoblacion"></poblacion-selector>
+                                      </azteca-form-field>
+
+                                  </div>
+                              </div>
+                          </tab>
+
+                          <tab heading="Miembros" [disabled]="sucursal.identity == 0" (select)="selectMiembrosTab()">
+                          </tab>
+                      </tabset>
+                  </div>
+              </div>
+
+          </azteca-catalog-editor>
+      </form>
+    `,
         providers: [
             {
-                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => SucursalesEditor)
+                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => SucursalesEditor_1)
             },
             {
                 provide: index_1.CatalogService, useExisting: sucursal_service_1.SucursalService
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [index_1.Context, router_1.Router, router_1.ActivatedRoute, common_1.Location, forms_1.FormBuilder, core_1.ChangeDetectorRef, sucursal_service_1.SucursalService, empresa_service_1.EmpresaService])
+    }),
+    __metadata("design:paramtypes", [index_1.Context, router_1.Router, router_1.ActivatedRoute, common_1.Location, forms_1.FormBuilder, core_1.ChangeDetectorRef,
+        sucursal_service_1.SucursalService, empresa_service_1.EmpresaService])
 ], SucursalesEditor);
 exports.SucursalesEditor = SucursalesEditor;
-//# sourceMappingURL=sucursales.editor.js.map
+var SucursalesEditor_1;

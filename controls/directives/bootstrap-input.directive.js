@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 let BootstrapInputDirective = class BootstrapInputDirective {
     constructor(el, renderer) {
         renderer.setElementClass(el.nativeElement, 'form-control', true);
@@ -17,8 +17,7 @@ let BootstrapInputDirective = class BootstrapInputDirective {
 BootstrapInputDirective = __decorate([
     core_1.Directive({
         selector: 'input[type=text]:not([noBootstrap]), textarea:not([noBootstrap])'
-    }), 
-    __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
 ], BootstrapInputDirective);
 exports.BootstrapInputDirective = BootstrapInputDirective;
-//# sourceMappingURL=bootstrap-input.directive.js.map

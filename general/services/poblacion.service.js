@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const http_1 = require('@angular/http');
+const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
 //
-const index_1 = require('../../index');
-const poblacion_1 = require('../models/poblacion');
+const index_1 = require("../../index");
+const poblacion_1 = require("../models/poblacion");
 let PoblacionService = class PoblacionService extends index_1.CatalogService {
     constructor(http, context) {
         super(http, context, "api/kernel/general/poblaciones");
@@ -22,8 +22,7 @@ let PoblacionService = class PoblacionService extends index_1.CatalogService {
     }
 };
 PoblacionService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http, index_1.Context])
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, index_1.Context])
 ], PoblacionService);
 exports.PoblacionService = PoblacionService;
-//# sourceMappingURL=poblacion.service.js.map

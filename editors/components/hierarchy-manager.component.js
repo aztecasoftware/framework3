@@ -9,16 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 //Angular
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-const common_1 = require('@angular/common');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const common_1 = require("@angular/common");
 //Tree
-const angular2_tree_component_1 = require('angular2-tree-component');
+const angular2_tree_component_1 = require("angular2-tree-component");
 //Bootstrap
-const ng2_bootstrap_1 = require('ng2-bootstrap');
+const ng2_bootstrap_1 = require("ng2-bootstrap");
 //Azteca Kernel
-const index_1 = require('../../index');
-const index_2 = require('../../controls/index');
+const index_1 = require("../../index");
+const index_2 = require("../../controls/index");
 //
 let HierarchyManagerComponent = class HierarchyManagerComponent {
     constructor(context, catalogService, router, route, location) {
@@ -133,63 +133,154 @@ let HierarchyManagerComponent = class HierarchyManagerComponent {
     }
 };
 __decorate([
-    core_1.ContentChildren(index_2.MenuItemDirective), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(index_2.MenuItemDirective),
+    __metadata("design:type", core_1.QueryList)
 ], HierarchyManagerComponent.prototype, "customMenuItems", void 0);
 __decorate([
-    core_1.ViewChild('editDialog'), 
-    __metadata('design:type', ng2_bootstrap_1.ModalDirective)
+    core_1.ViewChild('editDialog'),
+    __metadata("design:type", ng2_bootstrap_1.ModalDirective)
 ], HierarchyManagerComponent.prototype, "editDialog", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Array)
+    core_1.Input(),
+    __metadata("design:type", Array)
 ], HierarchyManagerComponent.prototype, "nodes", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], HierarchyManagerComponent.prototype, "title", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], HierarchyManagerComponent.prototype, "enabled", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', angular2_tree_component_1.TreeNode)
+    core_1.Input(),
+    __metadata("design:type", angular2_tree_component_1.TreeNode)
 ], HierarchyManagerComponent.prototype, "currentNode", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "configureCatalog", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "menuItemClick", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "currentNodeChanged", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "creatingNode", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "editingNode", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "savingNode", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], HierarchyManagerComponent.prototype, "savingHierarchy", void 0);
 HierarchyManagerComponent = __decorate([
     core_1.Component({
         selector: 'azteca-hierarchy-manager',
-        templateUrl: './hierarchy-manager.component.html'
-    }), 
-    __metadata('design:paramtypes', [index_1.Context, index_1.CatalogService, router_1.Router, router_1.ActivatedRoute, common_1.Location])
+        template: `
+      <!--Pool de alertas-->
+      <alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissible="true" [dismissOnTimeout]="alert.dismissOnTimeout" (close)="closeAlert(i)">
+          {{ alert?.msg }}
+      </alert>
+
+      <div class="row">
+          <div class="col-xs-12 col-md-10 col-lg-10">
+              <az-panel [header]="title">
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-10 col-lg-10">
+                          <az-toolbar (buttonClick)="mainToolbarHandler($event)">
+                              <az-toolbar-button [name]="'SAVE'" [type]="'primary'" [text]="'Guardar Cambios'" [icon]="'glyphicon glyphicon-floppy-disk'"></az-toolbar-button>
+                              <az-toolbar-button [name]="'ROOT'" [text]="'Crear ráiz'" [icon]="'glyphicon glyphicon-plus'"></az-toolbar-button>
+                              <az-toolbar-button [name]="'CLOSE'" [text]="'Cerrar'" [icon]="'glyphicon glyphicon-remove'"></az-toolbar-button>
+                          </az-toolbar>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12">
+                          <Tree [nodes]="nodes" 
+                                [options]="treeOptions" 
+                                (onActivate)="onCurrentNodeChanged($event)"
+                                (onMoveNode)="onMoveNode($event)">
+
+                              <template #treeNodeTemplate let-node="node" let-index="index">
+                                  <span [class]="node.data.icon"></span>
+                                  <span [wjContextMenu]="ctxMenu">{{ node.data.nombre }}</span>
+                              </template>
+                          </Tree>
+
+                      </div>
+                  </div>
+
+              </az-panel>
+          </div>
+      </div>
+
+      <!-- Menú Contextual-->
+      <wj-menu #ctxMenu style="display:none"
+                      (itemClicked)="onMenuItemClick(ctxMenu, $event)"                
+                      [isDisabled]="!enabled">
+
+          <!-- Opciones estándar de la jerarquía-->
+          <wj-menu-item *ngFor="let item of menuItems">
+              <div *ngIf="enabled && item.enabled">
+                  <span [class]="item.icon"></span>
+                  <b>{{item.text}}</b>
+                  <br>
+                  <small><i>{{item.smallText}}</i></small>
+              </div>
+          </wj-menu-item>
+    
+          <wj-menu-separator *ngIf="customMenuItems && customMenuItems.toArray().length > 0"></wj-menu-separator>
+    
+          <!--Opciones personalizadas del componente padre-->
+          <wj-menu-item *ngFor="let item of customMenuItems">
+              <div *ngIf="enabled && item.enabled">
+                  <span [class]="item.icon"></span>
+                  <b>{{item.text}}</b>
+                  <br>
+                  <small><i>{{item.smallText}}</i></small>
+              </div>
+          </wj-menu-item>
+
+      </wj-menu>
+
+
+      <div bsModal #editDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-body">
+
+                      <div class="panel panel-default">
+                          <div class="panel-heading">Edición de información del nodo</div>
+                          <div class="panel-body">
+                              <ng-content></ng-content>
+                          </div>
+                      </div> 
+
+                  </div> <!--Modal Body-->
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="onCommitEdit()">Aceptar</button>
+                      <button type="button" class="btn btn-default" (click)="onCancelEdit()">Cancelar</button>
+                  </div> <!--Modal Footer-->
+
+              </div> <!-- Modal Content-->
+          </div> <!--Modal-->
+      </div> <!--Modal directive-->
+    `
+    }),
+    __metadata("design:paramtypes", [index_1.Context, index_1.CatalogService, router_1.Router,
+        router_1.ActivatedRoute, common_1.Location])
 ], HierarchyManagerComponent);
 exports.HierarchyManagerComponent = HierarchyManagerComponent;
-//# sourceMappingURL=hierarchy-manager.component.js.map

@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
 //
-const base_control_1 = require('../models/base-control');
-const base_component_1 = require('../../base-component');
-let CatalogCodeComponent_1 = class CatalogCodeComponent extends base_control_1.BaseControl {
+const base_control_1 = require("../models/base-control");
+const base_component_1 = require("../../base-component");
+let CatalogCodeComponent = CatalogCodeComponent_1 = class CatalogCodeComponent extends base_control_1.BaseControl {
     constructor(renderer) {
         super();
         this.renderer = renderer;
@@ -51,41 +51,47 @@ let CatalogCodeComponent_1 = class CatalogCodeComponent extends base_control_1.B
     }
     registerOnTouched() { }
 };
-let CatalogCodeComponent = CatalogCodeComponent_1;
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], CatalogCodeComponent.prototype, "text", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogCodeComponent.prototype, "automatic", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogCodeComponent.prototype, "textChanged", void 0);
 __decorate([
-    core_1.ViewChild('textbox'), 
-    __metadata('design:type', core_1.ElementRef)
+    core_1.ViewChild('textbox'),
+    __metadata("design:type", core_1.ElementRef)
 ], CatalogCodeComponent.prototype, "textbox", void 0);
 __decorate([
-    core_1.ContentChild(forms_1.FormControlName), 
-    __metadata('design:type', forms_1.FormControlName)
+    core_1.ContentChild(forms_1.FormControlName),
+    __metadata("design:type", forms_1.FormControlName)
 ], CatalogCodeComponent.prototype, "state", void 0);
 CatalogCodeComponent = CatalogCodeComponent_1 = __decorate([
     core_1.Component({
         selector: 'catalog-code',
-        templateUrl: './catalog-code.component.html',
+        template: `
+      <div *ngIf="visible">
+          <input type="text" #textbox [value]="text" (keyup)="onTextChanged($event)" [disabled]="!enabled" [readonly]="automatic ? 'true': null" />
+      </div>
+      <div *ngIf="!visible">
+          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+      </div>
+    `,
         providers: [
             {
-                provide: base_component_1.BaseComponent, useExisting: core_1.forwardRef(() => CatalogCodeComponent)
+                provide: base_component_1.BaseComponent, useExisting: core_1.forwardRef(() => CatalogCodeComponent_1)
             },
             {
-                provide: forms_1.NG_VALUE_ACCESSOR, useExisting: core_1.forwardRef(() => CatalogCodeComponent), multi: true
+                provide: forms_1.NG_VALUE_ACCESSOR, useExisting: core_1.forwardRef(() => CatalogCodeComponent_1), multi: true
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [core_1.Renderer])
+    }),
+    __metadata("design:paramtypes", [core_1.Renderer])
 ], CatalogCodeComponent);
 exports.CatalogCodeComponent = CatalogCodeComponent;
-//# sourceMappingURL=catalog-code.component.js.map
+var CatalogCodeComponent_1;

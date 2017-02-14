@@ -10,4 +10,3 @@ class HierarchyManager {
     }
 }
 exports.HierarchyManager = HierarchyManager;
-//# sourceMappingURL=hierarchy-manager.js.map

@@ -8,4 +8,3 @@ exports.DocumentInfo = DocumentInfo;
 class DocumentDetail {
 }
 exports.DocumentDetail = DocumentDetail;
-//# sourceMappingURL=document.js.map

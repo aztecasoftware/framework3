@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 //Frameworks
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-const forms_1 = require('@angular/forms');
-const common_1 = require('@angular/common');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const forms_1 = require("@angular/forms");
+const common_1 = require("@angular/common");
 //Azteca Kernel
-const index_1 = require('../../index');
-const index_2 = require('../../editors/index');
+const index_1 = require("../../index");
+const index_2 = require("../../editors/index");
 //Locales
-const grupo_1 = require('../models/grupo');
-const grupo_service_1 = require('../services/grupo.service');
-let GruposEditor_1 = class GruposEditor extends index_2.CatalogEditor {
+const grupo_1 = require("../models/grupo");
+const grupo_service_1 = require("../services/grupo.service");
+let GruposEditor = GruposEditor_1 = class GruposEditor extends index_2.CatalogEditor {
     constructor(context, router, route, location, formBuilder, changeDetector, grupoService) {
         super(context, changeDetector);
         this.context = context;
@@ -88,21 +88,55 @@ let GruposEditor_1 = class GruposEditor extends index_2.CatalogEditor {
         }
     }
 };
-let GruposEditor = GruposEditor_1;
 GruposEditor = GruposEditor_1 = __decorate([
     core_1.Component({
         selector: 'security-grupos-editor',
-        templateUrl: './grupos.editor.html',
+        template: `
+      <form [formGroup]="catalogForm">
+          <azteca-catalog-editor #catalogEditor
+                                 [title]="'Grupo de Usuarios'"
+                                 [info]="grupo"
+                                 [valid]="catalogForm.valid"
+                                 (configureCatalog)="onConfigureCatalog($event)"
+                                 (creatingItem)="onCreatingItem()"
+                                 (viewingItem)="onViewingItem($event)"
+                                 (cloningItem)="onCloningItem($event)"
+                                 (savingItem)="onSavingItem($event)"
+                                 (loadingItem)="onLoadingItem($event)"
+                                 (menuItemClick)="onMenuItemClick($event)">
+
+              <!------------------- Menu de acciones adicionales --------------------->
+              <azteca-menu-item [name]="'USERS'" [icon]="'glyphicon glyphicon-user'" [text]="'Miembros'" [smallText]="'editar usuarios miembro'"></azteca-menu-item>
+              <azteca-menu-item [name]="'ACCESS'" [icon]="'glyphicon glyphicon-lock'" [text]="'Accesos'" [smallText]="'definir accesos'"></azteca-menu-item>        
+
+              <!------------------- Controles del editor ----------------------------->
+              <div class="row">
+
+                  <div class="col-xs-10 col-md-10">
+                      <azteca-form-field [label]="'Código:'">                    
+                          <az-textbox formControlName="codigo" [(ngModel)]="grupo.code"></az-textbox>
+                      </azteca-form-field>
+
+                      <azteca-form-field [label]="'Nombre:'">
+                          <az-textbox formControlName="nombre" [(ngModel)]="grupo.nombre"></az-textbox>
+                      </azteca-form-field>
+
+                  </div>
+              </div>        
+          </azteca-catalog-editor>
+      </form>
+    `,
         providers: [
             {
-                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => GruposEditor)
+                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => GruposEditor_1)
             },
             {
                 provide: index_1.CatalogService, useExisting: grupo_service_1.GrupoService
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [index_1.Context, router_1.Router, router_1.ActivatedRoute, common_1.Location, forms_1.FormBuilder, core_1.ChangeDetectorRef, grupo_service_1.GrupoService])
+    }),
+    __metadata("design:paramtypes", [index_1.Context, router_1.Router, router_1.ActivatedRoute, common_1.Location, forms_1.FormBuilder, core_1.ChangeDetectorRef,
+        grupo_service_1.GrupoService])
 ], GruposEditor);
 exports.GruposEditor = GruposEditor;
-//# sourceMappingURL=grupos.editor.js.map
+var GruposEditor_1;

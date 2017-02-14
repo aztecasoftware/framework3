@@ -1,8 +1,8 @@
 "use strict";
-const http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 //
-const catalog_service_1 = require('./catalog.service');
+const catalog_service_1 = require("./catalog.service");
 class HierarchyService extends catalog_service_1.CatalogService {
     constructor(http, context, serviceUrl) {
         super(http, context, serviceUrl);
@@ -43,4 +43,3 @@ class HierarchyService extends catalog_service_1.CatalogService {
     }
 }
 exports.HierarchyService = HierarchyService;
-//# sourceMappingURL=hierarchy.service.js.map

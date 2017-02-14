@@ -8,26 +8,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
 let FormFieldComponent = class FormFieldComponent {
     constructor() {
     }
 };
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], FormFieldComponent.prototype, "label", void 0);
 __decorate([
-    core_1.ContentChild(forms_1.FormControlName), 
-    __metadata('design:type', forms_1.FormControlName)
+    core_1.ContentChild(forms_1.FormControlName),
+    __metadata("design:type", forms_1.FormControlName)
 ], FormFieldComponent.prototype, "state", void 0);
 FormFieldComponent = __decorate([
     core_1.Component({
         selector: 'azteca-form-field',
-        templateUrl: './form-field.component.html'
-    }), 
-    __metadata('design:paramtypes', [])
+        template: `
+      <div class="form-group form-group-sm">
+          <label for="for" class="control-label" *ngIf="label">{{label}}</label>
+          <ng-content></ng-content>        
+    
+          <div [hidden]="state.control.valid || state.control.pristine" class="alert alert-danger">El campo es requerido</div>
+    
+      </div>
+    `
+    }),
+    __metadata("design:paramtypes", [])
 ], FormFieldComponent);
 exports.FormFieldComponent = FormFieldComponent;
-//# sourceMappingURL=form-field.component.js.map

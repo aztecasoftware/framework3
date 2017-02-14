@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 //Frameworks
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
 //Azteca Kernel
-const index_1 = require('../../index');
-const index_2 = require('../../editors/index');
-const grupo_service_1 = require('../services/grupo.service');
-let GruposManager_1 = class GruposManager extends index_2.CatalogManager {
+const index_1 = require("../../index");
+const index_2 = require("../../editors/index");
+const grupo_service_1 = require("../services/grupo.service");
+let GruposManager = GruposManager_1 = class GruposManager extends index_2.CatalogManager {
     constructor(router, route, context, grupoService) {
         super(context);
         this.router = router;
@@ -69,21 +69,46 @@ let GruposManager_1 = class GruposManager extends index_2.CatalogManager {
             .catch(error => this.handleError(error));
     }
 };
-let GruposManager = GruposManager_1;
 GruposManager = GruposManager_1 = __decorate([
     core_1.Component({
         selector: 'security-grupos-manager',
-        templateUrl: './grupos.manager.html',
+        template: `
+      <azteca-catalog-manager (searchRequested)="doSearch($event)"
+                              (addingItem)="onAddingItem()"
+                              (viewingItem)="onViewingItem($event)"
+                              (editingItem)="onEditingItem($event)"
+                              (deletingItem)="onDeletingItem($event)"
+                              (cloningItem)="onCloningItem($event)"
+                              (changingItemState)="onChangingItemState($event)"
+                              (configureCatalog)="onConfigureCatalog($event)"
+                              [enabled]="enabled"
+                              [allowNew]="allowNew"
+                              [allowView]="allowView"
+                              [allowEdit]="allowEdit"
+                              [allowDelete]="allowDelete"
+                              [allowClone]="allowClone"
+                              [allowChangeState]="allowChangeState"
+                              [catalogList]="grupos"
+                              [totalRows]="totalRows"
+                              [pageIndex]="pageIndex">
+
+          <azteca-grid-column [header]="'ID'" [binding]="'id'" dataType="Number" [width]="'10*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Codigo'" [binding]="'codigo'" [width]="'10*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Nombre'" [binding]="'nombre'" [width]="'60*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'20*'"></azteca-grid-column>
+
+      </azteca-catalog-manager>
+    `,
         providers: [
             {
-                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => GruposManager)
+                provide: index_1.BaseComponent, useExisting: core_1.forwardRef(() => GruposManager_1)
             },
             {
                 provide: index_1.CatalogService, useExisting: grupo_service_1.GrupoService
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, index_1.Context, grupo_service_1.GrupoService])
+    }),
+    __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, index_1.Context, grupo_service_1.GrupoService])
 ], GruposManager);
 exports.GruposManager = GruposManager;
-//# sourceMappingURL=grupos.manager.js.map
+var GruposManager_1;

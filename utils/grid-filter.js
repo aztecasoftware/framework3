@@ -20,4 +20,3 @@ exports.GridColumnFilter = GridColumnFilter;
 class GridFilterCondition {
 }
 exports.GridFilterCondition = GridFilterCondition;
-//# sourceMappingURL=grid-filter.js.map

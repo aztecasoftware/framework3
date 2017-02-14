@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const base_control_1 = require('./base-control');
+const core_1 = require("@angular/core");
+const base_control_1 = require("./base-control");
 class CatalogSelector extends base_control_1.BaseControl {
     constructor(context) {
         super();
@@ -48,8 +48,8 @@ class CatalogSelector extends base_control_1.BaseControl {
     }
 }
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [Number])
 ], CatalogSelector.prototype, "selectedID", null);
 exports.CatalogSelector = CatalogSelector;
-//# sourceMappingURL=catalog-selector.js.map

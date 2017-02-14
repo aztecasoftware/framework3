@@ -21,4 +21,3 @@ FileType.BINARY = "binary";
 FileType.TEXT = "text";
 FileType.GENERIC = "generic";
 exports.FileType = FileType;
-//# sourceMappingURL=file.js.map

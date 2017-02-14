@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
 let GridButtonCell = class GridButtonCell {
     constructor() {
@@ -20,23 +20,26 @@ let GridButtonCell = class GridButtonCell {
     }
 };
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Object)
+    core_1.Input(),
+    __metadata("design:type", Object)
 ], GridButtonCell.prototype, "cell", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], GridButtonCell.prototype, "icon", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], GridButtonCell.prototype, "click", void 0);
 GridButtonCell = __decorate([
     core_1.Component({
         selector: 'grid-button-cell',
-        templateUrl: './grid-button-cell.html'
-    }), 
-    __metadata('design:paramtypes', [])
+        template: `
+      <button type="button" class="btn btn-default" (click)="onClick(cell.item)">
+          <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    `
+    }),
+    __metadata("design:paramtypes", [])
 ], GridButtonCell);
 exports.GridButtonCell = GridButtonCell;
-//# sourceMappingURL=grid-button-cell.js.map

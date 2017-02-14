@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 class BaseComponent {
     constructor() {
         this.appliedPolicies = [];
@@ -27,16 +27,15 @@ class BaseComponent {
     }
 }
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], BaseComponent.prototype, "name", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], BaseComponent.prototype, "allowPolicies", void 0);
 __decorate([
-    core_1.ViewChildren(BaseComponent), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ViewChildren(BaseComponent),
+    __metadata("design:type", core_1.QueryList)
 ], BaseComponent.prototype, "children", void 0);
 exports.BaseComponent = BaseComponent;
-//# sourceMappingURL=base-component.js.map

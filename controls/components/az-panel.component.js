@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
-const base_control_1 = require('../models/base-control');
+const base_control_1 = require("../models/base-control");
 let AzPanelComponent = class AzPanelComponent extends base_control_1.BaseControl {
     get panelClass() {
         if (this.type && this.type.trim() != '') {
@@ -22,19 +22,24 @@ let AzPanelComponent = class AzPanelComponent extends base_control_1.BaseControl
     }
 };
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], AzPanelComponent.prototype, "header", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], AzPanelComponent.prototype, "type", void 0);
 AzPanelComponent = __decorate([
     core_1.Component({
         selector: 'az-panel',
-        templateUrl: 'az-panel.component.html'
-    }), 
-    __metadata('design:paramtypes', [])
+        template: `
+      <div [ngClass]="panelClass">
+          <div class="panel-heading">{{header}}</div>
+          <div class="panel-body">
+              <ng-content></ng-content>
+          </div>
+      </div>
+    `
+    })
 ], AzPanelComponent);
 exports.AzPanelComponent = AzPanelComponent;
-//# sourceMappingURL=az-panel.component.js.map

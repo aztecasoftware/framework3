@@ -1,6 +1,6 @@
 "use strict";
-const index_1 = require('../../index');
-const file_1 = require('../../general/models/file');
+const index_1 = require("../../index");
+const file_1 = require("../../general/models/file");
 class EmpresaInfo extends index_1.CatalogInfo {
     constructor() {
         super();
@@ -11,4 +11,3 @@ exports.EmpresaInfo = EmpresaInfo;
 class EmpresaItem {
 }
 exports.EmpresaItem = EmpresaItem;
-//# sourceMappingURL=empresa.js.map

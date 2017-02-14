@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
 //
-const base_control_1 = require('../models/base-control');
-const base_component_1 = require('../../base-component');
-let AzTextboxComponent_1 = class AzTextboxComponent extends base_control_1.BaseControl {
+const base_control_1 = require("../models/base-control");
+const base_component_1 = require("../../base-component");
+let AzTextboxComponent = AzTextboxComponent_1 = class AzTextboxComponent extends base_control_1.BaseControl {
     constructor(renderer) {
         super();
         this.renderer = renderer;
@@ -34,33 +34,39 @@ let AzTextboxComponent_1 = class AzTextboxComponent extends base_control_1.BaseC
     }
     registerOnTouched() { }
 };
-let AzTextboxComponent = AzTextboxComponent_1;
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], AzTextboxComponent.prototype, "text", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], AzTextboxComponent.prototype, "textChanged", void 0);
 __decorate([
-    core_1.ViewChild('textbox'), 
-    __metadata('design:type', core_1.ElementRef)
+    core_1.ViewChild('textbox'),
+    __metadata("design:type", core_1.ElementRef)
 ], AzTextboxComponent.prototype, "textbox", void 0);
 AzTextboxComponent = AzTextboxComponent_1 = __decorate([
     core_1.Component({
         selector: 'az-textbox',
-        templateUrl: './az-textbox.component.html',
+        template: `
+      <div *ngIf="visible">
+          <input type="text" #textbox [value]="text" (keyup)="onTextChanged($event)" [disabled]="!enabled" />
+      </div>
+      <div *ngIf="!visible">
+          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+      </div>
+    `,
         providers: [
             {
-                provide: base_component_1.BaseComponent, useExisting: core_1.forwardRef(() => AzTextboxComponent)
+                provide: base_component_1.BaseComponent, useExisting: core_1.forwardRef(() => AzTextboxComponent_1)
             },
             {
-                provide: forms_1.NG_VALUE_ACCESSOR, useExisting: core_1.forwardRef(() => AzTextboxComponent), multi: true
+                provide: forms_1.NG_VALUE_ACCESSOR, useExisting: core_1.forwardRef(() => AzTextboxComponent_1), multi: true
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [core_1.Renderer])
+    }),
+    __metadata("design:paramtypes", [core_1.Renderer])
 ], AzTextboxComponent);
 exports.AzTextboxComponent = AzTextboxComponent;
-//# sourceMappingURL=az-textbox.component.js.map
+var AzTextboxComponent_1;

@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
 //
-const base_component_1 = require('../../base-component');
-const policies_1 = require('../../security/models/policies');
+const base_component_1 = require("../../base-component");
+const policies_1 = require("../../security/models/policies");
 class BaseControl extends base_component_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -57,16 +57,17 @@ class BaseControl extends base_component_1.BaseComponent {
     }
 }
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], BaseControl.prototype, "enabled", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], BaseControl.prototype, "visible", null);
 __decorate([
-    core_1.ContentChild(forms_1.FormControlName), 
-    __metadata('design:type', forms_1.FormControlName)
+    core_1.ContentChild(forms_1.FormControlName),
+    __metadata("design:type", forms_1.FormControlName)
 ], BaseControl.prototype, "state", void 0);
 exports.BaseControl = BaseControl;
-//# sourceMappingURL=base-control.js.map

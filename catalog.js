@@ -9,4 +9,3 @@ class CatalogInfo {
     }
 }
 exports.CatalogInfo = CatalogInfo;
-//# sourceMappingURL=catalog.js.map

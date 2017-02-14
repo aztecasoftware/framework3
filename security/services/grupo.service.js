@@ -9,12 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 //Frameworks
-const core_1 = require('@angular/core');
-const http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 //Azteca Kernel
-const index_1 = require('../../index');
-const grupo_1 = require('../models/grupo');
+const index_1 = require("../../index");
+const grupo_1 = require("../models/grupo");
 let GrupoService = class GrupoService extends index_1.CatalogService {
     constructor(http, context) {
         super(http, context, 'api/kernel/security/grupos');
@@ -44,8 +44,7 @@ let GrupoService = class GrupoService extends index_1.CatalogService {
     }
 };
 GrupoService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http, index_1.Context])
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, index_1.Context])
 ], GrupoService);
 exports.GrupoService = GrupoService;
-//# sourceMappingURL=grupo.service.js.map

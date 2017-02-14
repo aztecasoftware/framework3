@@ -8,13 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
-const ng2_bootstrap_1 = require('ng2-bootstrap');
+const ng2_bootstrap_1 = require("ng2-bootstrap");
 //
-const index_1 = require('../../index');
-const index_2 = require('../../search/index');
-const index_3 = require('../../controls/index');
+const index_1 = require("../../index");
+const index_2 = require("../../search/index");
+const index_3 = require("../../controls/index");
 let CatalogManagerComponent = class CatalogManagerComponent {
     constructor(context, catalogService) {
         this.context = context;
@@ -209,116 +209,212 @@ let CatalogManagerComponent = class CatalogManagerComponent {
     }
 };
 __decorate([
-    core_1.ContentChildren(index_3.GridColumn), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(index_3.GridColumn),
+    __metadata("design:type", core_1.QueryList)
 ], CatalogManagerComponent.prototype, "columns", void 0);
 __decorate([
-    core_1.ViewChild('confirmDelDialog'), 
-    __metadata('design:type', ng2_bootstrap_1.ModalDirective)
+    core_1.ViewChild('confirmDelDialog'),
+    __metadata("design:type", ng2_bootstrap_1.ModalDirective)
 ], CatalogManagerComponent.prototype, "deleteDialog", void 0);
 __decorate([
-    core_1.ContentChildren(index_3.MenuItemDirective), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(index_3.MenuItemDirective),
+    __metadata("design:type", core_1.QueryList)
 ], CatalogManagerComponent.prototype, "customMenuItems", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogManagerComponent.prototype, "pageSize", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogManagerComponent.prototype, "pageIndex", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogManagerComponent.prototype, "totalRows", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManagerComponent.prototype, "standAlone", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Array)
+    core_1.Input(),
+    __metadata("design:type", Array)
 ], CatalogManagerComponent.prototype, "catalogList", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManagerComponent.prototype, "serverSide", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManagerComponent.prototype, "enabled", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogManagerComponent.prototype, "allowNew", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], CatalogManagerComponent.prototype, "allowView", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], CatalogManagerComponent.prototype, "allowEdit", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], CatalogManagerComponent.prototype, "allowDelete", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], CatalogManagerComponent.prototype, "allowClone", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], CatalogManagerComponent.prototype, "allowChangeState", null);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "configureCatalog", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "searchRequested", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "currentItemChanged", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "addingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "viewingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "editingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "deletingItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "cloningItem", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "changingItemState", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogManagerComponent.prototype, "menuItemClick", void 0);
 CatalogManagerComponent = __decorate([
     core_1.Component({
         selector: 'azteca-catalog-manager',
-        templateUrl: './catalog-manager.component.html',
+        template: `
+      <!--Pool de alertas-->
+      <alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissible="true" [dismissOnTimeout]="alert.dismissOnTimeout" (close)="closeAlert(i)">
+          {{ alert?.msg }}
+      </alert>
+
+      <div class="row">
+          <div [ngClass]="{'col-xs-12 col-md-10 col-lg-10': standAlone}">
+
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary" (click)="newItemHandler()" *ngIf="enabled && allowNew">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="triggerSearch()">
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualizar
+                  </button>
+                  <wj-menu #menu
+                           (itemClicked)="onMenuItemClicked(menu, $event)"
+                           (isDroppedDownChanging)="onIsDroppedDown(menu, $event)"                     
+                           [isDisabled]="!enabled"
+                           [header]="'Opciones'" >
+
+                      <wj-menu-item *ngFor="let item of menuItems">
+                          <div *ngIf="enabled && item.enabled">
+                              <span [class]="item.icon"></span>
+                              <b>{{item.text}}</b>
+                              <br>
+                              <small><i>{{item.smallText}}</i></small>
+                          </div>
+                      </wj-menu-item>
+
+                  </wj-menu>
+
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div [ngClass]="classMap">
+
+              <azteca-catalog-list [catalogList]="catalogList"
+                                   (searchRequested)="searchRequestedHandler($event)"
+                                   (currentItemChanged)="currentItemChangedHandler($event)"
+                                   (contextMenuClick)="optionClick($event)"
+                                   (contextMenuOpen)="onValidateMenu($event)"
+                                   [enabled]="enabled"                             
+                                   [serverSide]="serverSide"
+                                   [pageSize]="pageSize"
+                                   [totalRows]="totalRows"
+                                   [pageIndex]="pageIndex">
+
+                  <!-- Mapear opciones de menú de componente padre-->
+                  <azteca-menu-item *ngFor="let item of menuItems" [name]="item.name" [icon]="item.icon" [text]="item.text" [smallText]="item.smallText"></azteca-menu-item>
+            
+                  <!-- Mapear columnas definidas en componente padre-->
+                  <azteca-grid-column *ngFor="let col of columns"
+                                      [header]="col.header"
+                                      [binding]="col.binding"
+                                      [dataType]="col.dataType ? col.dataType :'String'"
+                                      [dataMap]="col.dataMap"
+                                      [width]="col.width">
+
+                      <!-- Add cell template if col.cellTemplate is specified. -->
+                      <template wjFlexGridCellTemplate *ngIf="col.cellTemplate" [cellType]="'Cell'" let-cell="cell">
+                          <!-- Load the component whose type is specified in col.cellTemplate -->
+                          <wj-component-loader [component]="col.cellTemplate" [properties]="{cell: cell}"></wj-component-loader>
+                      </template>
+
+                  </azteca-grid-column>
+
+              </azteca-catalog-list>
+          </div>
+      </div>
+
+
+      <div bsModal #confirmDelDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+          <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                  <div class="modal-body">
+                      <div>¿Está seguro que desea eliminar el elemento seleccionado?</div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="hideDeleteDialog()">Cancelar</button>
+                      <button type="button" class="btn btn-default" (click)="deleteItem()">Aceptar</button>                
+                  </div>
+
+              </div>
+          </div>
+
+      </div>    
+    `,
         changeDetection: core_1.ChangeDetectionStrategy.OnPush
-    }), 
-    __metadata('design:paramtypes', [index_1.Context, index_1.CatalogService])
+    }),
+    __metadata("design:paramtypes", [index_1.Context, index_1.CatalogService])
 ], CatalogManagerComponent);
 exports.CatalogManagerComponent = CatalogManagerComponent;
-//# sourceMappingURL=catalog-manager.component.js.map

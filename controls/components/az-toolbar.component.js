@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const forms_1 = require('@angular/forms');
-const base_component_1 = require('../../base-component');
-const policies_1 = require('../../security/models/policies');
-const toolbar_button_directive_1 = require('../directives/toolbar-button.directive');
-let AzToolbarComponent_1 = class AzToolbarComponent extends base_component_1.BaseComponent {
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
+const base_component_1 = require("../../base-component");
+const policies_1 = require("../../security/models/policies");
+const toolbar_button_directive_1 = require("../directives/toolbar-button.directive");
+let AzToolbarComponent = AzToolbarComponent_1 = class AzToolbarComponent extends base_component_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.buttonClick = new core_1.EventEmitter();
@@ -35,30 +35,34 @@ let AzToolbarComponent_1 = class AzToolbarComponent extends base_component_1.Bas
         }
     }
 };
-let AzToolbarComponent = AzToolbarComponent_1;
 __decorate([
-    core_1.ContentChildren(toolbar_button_directive_1.ToolbarButtonDirective), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(toolbar_button_directive_1.ToolbarButtonDirective),
+    __metadata("design:type", core_1.QueryList)
 ], AzToolbarComponent.prototype, "buttons", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], AzToolbarComponent.prototype, "buttonClick", void 0);
 AzToolbarComponent = AzToolbarComponent_1 = __decorate([
     core_1.Component({
         selector: 'az-toolbar',
-        templateUrl: './az-toolbar.component.html',
+        template: `
+      <div class="btn-group">
+          <button *ngFor="let btn of buttons" type="button" [ngClass]="btn.buttonClass" (click)="onButtonClick(btn)" [disabled]="!btn.enabled">
+              <span [class]="btn.icon" aria-hidden="true"></span> {{btn.text}}
+          </button>
+      </div>
+    `,
         providers: [{
                 provide: base_component_1.BaseComponent,
-                useExisting: core_1.forwardRef(() => AzToolbarComponent)
+                useExisting: core_1.forwardRef(() => AzToolbarComponent_1)
             },
             {
                 provide: forms_1.NG_VALUE_ACCESSOR,
-                useExisting: core_1.forwardRef(() => AzToolbarComponent),
+                useExisting: core_1.forwardRef(() => AzToolbarComponent_1),
                 multi: true
             }]
-    }), 
-    __metadata('design:paramtypes', [])
+    })
 ], AzToolbarComponent);
 exports.AzToolbarComponent = AzToolbarComponent;
-//# sourceMappingURL=az-toolbar.component.js.map
+var AzToolbarComponent_1;

@@ -8,15 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
-const wijmo_1 = require('wijmo/wijmo');
-const wijmo_grid_1 = require('wijmo/wijmo.grid');
-const wijmo_grid_filter_1 = require('wijmo/wijmo.grid.filter');
-const wijmo_input_1 = require('wijmo/wijmo.input');
-const search_request_1 = require('../models/search-request');
-const index_1 = require('../../controls/index');
-const grid_filter_1 = require('../../utils/grid-filter');
+const wijmo_1 = require("wijmo/wijmo");
+const wijmo_grid_1 = require("wijmo/wijmo.grid");
+const wijmo_grid_filter_1 = require("wijmo/wijmo.grid.filter");
+const wijmo_input_1 = require("wijmo/wijmo.input");
+const search_request_1 = require("../models/search-request");
+const index_1 = require("../../controls/index");
+const grid_filter_1 = require("../../utils/grid-filter");
 let CatalogListComponent = class CatalogListComponent {
     constructor() {
         this._emptyFilter = "{\"defaultFilterType\":3, \"filters\":[]}";
@@ -218,91 +218,175 @@ let CatalogListComponent = class CatalogListComponent {
     }
 };
 __decorate([
-    core_1.ContentChildren(index_1.GridColumn), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(index_1.GridColumn),
+    __metadata("design:type", core_1.QueryList)
 ], CatalogListComponent.prototype, "columns", void 0);
 __decorate([
-    core_1.ViewChild('filter'), 
-    __metadata('design:type', wijmo_grid_filter_1.FlexGridFilter)
+    core_1.ViewChild('filter'),
+    __metadata("design:type", wijmo_grid_filter_1.FlexGridFilter)
 ], CatalogListComponent.prototype, "filter", void 0);
 __decorate([
-    core_1.ViewChild('grid'), 
-    __metadata('design:type', wijmo_grid_1.FlexGrid)
+    core_1.ViewChild('grid'),
+    __metadata("design:type", wijmo_grid_1.FlexGrid)
 ], CatalogListComponent.prototype, "grid", void 0);
 __decorate([
-    core_1.ViewChild('ctxMenu'), 
-    __metadata('design:type', wijmo_input_1.Menu)
+    core_1.ViewChild('ctxMenu'),
+    __metadata("design:type", wijmo_input_1.Menu)
 ], CatalogListComponent.prototype, "contextMenu", void 0);
 __decorate([
-    core_1.ContentChildren(index_1.MenuItemDirective), 
-    __metadata('design:type', core_1.QueryList)
+    core_1.ContentChildren(index_1.MenuItemDirective),
+    __metadata("design:type", core_1.QueryList)
 ], CatalogListComponent.prototype, "contextMenuItems", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogListComponent.prototype, "enabled", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Array)
+    core_1.Input(),
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [Array])
 ], CatalogListComponent.prototype, "catalogList", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogListComponent.prototype, "showSelectColumn", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean)
 ], CatalogListComponent.prototype, "showRowButton", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], CatalogListComponent.prototype, "rowButtonIcon", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogListComponent.prototype, "pageIndex", void 0);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [Number])
 ], CatalogListComponent.prototype, "pageSize", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Boolean)
+    core_1.Input(),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [Boolean])
 ], CatalogListComponent.prototype, "serverSide", null);
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', Number)
+    core_1.Input(),
+    __metadata("design:type", Number)
 ], CatalogListComponent.prototype, "totalRows", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "searchRequested", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "contextMenuClick", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "currentItemChanged", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "itemSelected", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "contextMenuOpen", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "rowButtonClick", void 0);
 CatalogListComponent = __decorate([
     core_1.Component({
         selector: 'azteca-catalog-list',
-        templateUrl: './catalog-list.component.html'
-    }), 
-    __metadata('design:paramtypes', [])
+        template: `
+      <wj-menu #ctxMenu (itemClicked)="menuItemClicked(ctxMenu, $event)" style="display:none">
+          <wj-menu-item *ngFor="let item of contextMenuItems">
+              <div *ngIf="enabled && item.enabled">
+                  <span [class]="item.icon"></span>
+                  <b>{{item.text}}</b>
+                  <br>
+                  <small><i>{{item.smallText}}</i></small>
+              </div>
+          </wj-menu-item>
+      </wj-menu>
+
+      <div class="row">
+
+          <div class="col-xs-12">
+              <wj-flex-grid #grid style="height:500px"
+                            [itemsSource]="catalogView"
+                            (initialized)="initialized(grid, $event)"
+                            (sortedColumn)="sortChanged(grid, $event)"
+                            [selectionMode]="'Row'"
+                            [wjContextMenu]="ctxMenu"                      
+                            [isReadOnly]="true">
+
+                  <!--Row Button-->
+                  <wj-flex-grid-column *ngIf="showRowButton" [header]="''" [width]="45" [isReadOnly]="true">
+                      <template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                          <button type="button" class="btn btn-default" (click)="onRowButtonClick(cell.item)">
+                              <span [ngClass]="rowButtonIcon"></span>
+                          </button>
+                      </template>
+                  </wj-flex-grid-column>
+
+                  <!--Selection Column-->
+                  <wj-flex-grid-column *ngIf="showSelectColumn" [header]="col.header" [binding]="'selected'" dataType="Boolean" [width]="'45'"></wj-flex-grid-column>
+
+                  <wj-flex-grid-filter #filter (filterChanged)="filterChanged(filter, $event)"></wj-flex-grid-filter>
+                  <!--Agregar las columnas definidas en el template-->
+                  <wj-flex-grid-column *ngFor="let col of columns"
+                                          [header]="col.header"
+                                          [binding]="col.binding"
+                                          [name]="col.name"
+                                          [dataType]="col.dataType"
+                                          [dataMap]="col.dataMap"
+                                          [width]="col.width">
+                      <!-- Add cell template if col.cellTemplate is specified. -->
+                      <template wjFlexGridCellTemplate *ngIf="col.cellTemplate" [cellType]="'Cell'" let-cell="cell">
+                          <!-- Load the component whose type is specified in col.cellTemplate -->
+                          <wj-component-loader [component]="col.cellTemplate" [properties]="{cell: cell}"></wj-component-loader>
+                      </template>
+                  </wj-flex-grid-column>
+              </wj-flex-grid>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-xs-12 col-md-6">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default"
+                          (click)="moveFirst()"
+                          [disabled]="pageIndex <= 0">
+                      <span class="glyphicon glyphicon-fast-backward"></span>
+                  </button>
+                  <button type="button" class="btn btn-default"
+                          (click)="movePrevious()"
+                          [disabled]="pageIndex <= 0">
+                      <span class="glyphicon glyphicon-step-backward"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" disabled style="width:100px">
+                      {{pageIndex + 1}} de {{pageCount}}
+                  </button>
+                  <button type="button" class="btn btn-default"
+                          (click)="moveNext()"
+                          [disabled]="pageIndex >= pageCount -1">
+                      <span class="glyphicon glyphicon-step-forward"></span>
+                  </button>
+                  <button type="button" class="btn btn-default"
+                          (click)="moveLast()"
+                          [disabled]="pageIndex >= pageCount -1">
+                      <span class="glyphicon glyphicon-fast-forward"></span>
+                  </button>
+              </div>
+          </div>
+      </div>
+    `
+    })
 ], CatalogListComponent);
 exports.CatalogListComponent = CatalogListComponent;
-//# sourceMappingURL=catalog-list.component.js.map

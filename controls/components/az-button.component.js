@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+const core_1 = require("@angular/core");
 //
-const base_control_1 = require('../models/base-control');
-const base_component_1 = require('../../base-component');
-let AzButtonComponent_1 = class AzButtonComponent extends base_control_1.BaseControl {
+const base_control_1 = require("../models/base-control");
+const base_component_1 = require("../../base-component");
+let AzButtonComponent = AzButtonComponent_1 = class AzButtonComponent extends base_control_1.BaseControl {
     constructor() {
         super(...arguments);
         this.type = 'default';
@@ -28,27 +28,29 @@ let AzButtonComponent_1 = class AzButtonComponent extends base_control_1.BaseCon
         this.click.next();
     }
 };
-let AzButtonComponent = AzButtonComponent_1;
 __decorate([
-    core_1.Input(), 
-    __metadata('design:type', String)
+    core_1.Input(),
+    __metadata("design:type", String)
 ], AzButtonComponent.prototype, "type", void 0);
 __decorate([
-    core_1.Output(), 
-    __metadata('design:type', core_1.EventEmitter)
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], AzButtonComponent.prototype, "click", void 0);
 AzButtonComponent = AzButtonComponent_1 = __decorate([
     core_1.Component({
         selector: 'az-button',
-        templateUrl: './az-button.component.html',
+        template: `
+      <button type="button" class="btn btn-default" (click)="onClick()" [disabled]="!enabled" *ngIf="visible">    
+          <ng-content></ng-content>
+      </button>
+    `,
         providers: [
             {
                 provide: base_component_1.BaseComponent,
-                useExisting: core_1.forwardRef(() => AzButtonComponent)
+                useExisting: core_1.forwardRef(() => AzButtonComponent_1)
             }
         ]
-    }), 
-    __metadata('design:paramtypes', [])
+    })
 ], AzButtonComponent);
 exports.AzButtonComponent = AzButtonComponent;
-//# sourceMappingURL=az-button.component.js.map
+var AzButtonComponent_1;

@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 let WebService = class WebService {
     constructor(http, url, sessionID) {
         this.http = http;
@@ -55,8 +55,7 @@ let WebService = class WebService {
     }
 };
 WebService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http, String, String])
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, String, String])
 ], WebService);
 exports.WebService = WebService;
-//# sourceMappingURL=webapi.js.map
