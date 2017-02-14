@@ -1,6 +1,5 @@
 import { Context } from '../../index';
-import { CatalogSelector } from '../../controls/models/catalog-selector';
-import { SearchRequest } from '../../search/index';
+import { SearchRequest, CatalogSelector } from '../../search/index';
 import { PoblacionInfo } from '../models/poblacion';
 import { PoblacionService } from '../services/poblacion.service';
 export declare class PoblacionSelectorComponent extends CatalogSelector {

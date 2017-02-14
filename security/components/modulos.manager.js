@@ -29,13 +29,30 @@ let ModulosManager = ModulosManager_1 = class ModulosManager extends index_2.Hie
             .then(nodes => this.modulos = nodes)
             .catch(error => this.handleError(error));
     }
+    onCurrentNodeChanged(node) {
+        this.currentNode = node;
+    }
+    onCreatingNode(parentNode) {
+    }
+    onEditingNode(node) {
+    }
+    onSavingNode(info) {
+    }
+    savingHierarchy(modulos) {
+    }
 };
 ModulosManager = ModulosManager_1 = __decorate([
     core_1.Component({
         selector: 'security-modulos-manager',
         template: `
       <azteca-hierarchy-manager (configureCatalog)="onConfigureCatalog($event)"
+                                (currentNodeChanged)="onCurrentNodeChanged($event)"
+                                (creatingNode)="onCreatingNode($event)"
+                                (editingNode)="onEditingNode($event)"
+                                (savingNode)="onSavingNode($event)"
+                                (savingHierarchy)="onSavingHierarchy($event)"
                                 [title]="'Administración de módulos del sistema'"
+                                [currentNode]="currentNode"
                                 [nodes]="modulos">
 
           <!------------------- Menu de acciones adicionales --------------------->

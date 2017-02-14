@@ -12,9 +12,9 @@ const core_1 = require("@angular/core");
 const forms_1 = require("@angular/forms");
 //
 const index_1 = require("../../index");
-const catalog_selector_1 = require("../../controls/models/catalog-selector");
+const index_2 = require("../../search/index");
 const poblacion_service_1 = require("../services/poblacion.service");
-let PoblacionSelectorComponent = PoblacionSelectorComponent_1 = class PoblacionSelectorComponent extends catalog_selector_1.CatalogSelector {
+let PoblacionSelectorComponent = PoblacionSelectorComponent_1 = class PoblacionSelectorComponent extends index_2.CatalogSelector {
     constructor(context, poblacionService) {
         super(context);
         this.context = context;

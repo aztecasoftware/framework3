@@ -71,8 +71,10 @@ let HierarchyManagerComponent = class HierarchyManagerComponent {
         let mnuAddChild = { icon: "glyphicon glyphicon-plus", text: "Crear hijo", name: "CHILD", smallText: "crear nodo hijo" };
         let mnuAddSibling = { icon: "glyphicon glyphicon-plus", text: "Crear hermano", name: "SIBLING", smallText: "crear nodo hermano" };
         let mnuEdit = { icon: "glyphicon glyphicon-edit", text: "Editar", name: "EDIT", smallText: "editar nodo" };
+        let mnuCopy = { icon: "glyphicon glyphicon-copy", text: "Copiar", name: "COPY", smallText: "copiar nodo y descendientes" };
+        let mnuPaste = { icon: "glyphicon glyphicon-paste", text: "Pegar", name: "PASTE", smallText: "pegar nodos en memoria" };
         let mnuDelete = { icon: "glyphicon glyphicon-trash", text: "Eliminar", name: "DELETE", smallText: "eliminar nodo" };
-        this.menuItems.push(mnuAddChild, mnuAddSibling, mnuEdit, mnuDelete);
+        this.menuItems.push(mnuAddChild, mnuAddSibling, mnuEdit, mnuCopy, mnuPaste, mnuDelete);
         //Marcar como habilitadas todas las opciones
         this.menuItems.forEach(item => {
             if (item.enabled == undefined)

@@ -39,10 +39,11 @@ const grupos_editor_1 = require("./components/grupos.editor");
 const roles_manager_1 = require("./components/roles.manager");
 const roles_editor_1 = require("./components/roles.editor");
 const modulos_manager_1 = require("./components/modulos.manager");
+const usuarios_list_component_1 = require("./components/usuarios-list.component");
 //Parts
 const grupo_miembros_component_1 = require("./components/grupo-miembros.component");
 let COMPONENTES = [empresas_manager_1.EmpresasManager, empresas_editor_1.EmpresasEditor, sucursales_manager_1.SucursalesManager, sucursales_editor_1.SucursalesEditor, grupos_manager_1.GruposManager, grupos_editor_1.GruposEditor,
-    roles_editor_1.RolesEditor, roles_manager_1.RolesManager, grupo_miembros_component_1.GrupoMiembrosComponent, modulos_manager_1.ModulosManager];
+    roles_editor_1.RolesEditor, roles_manager_1.RolesManager, grupo_miembros_component_1.GrupoMiembrosComponent, modulos_manager_1.ModulosManager, usuarios_list_component_1.UsuariosListComponent];
 let SERVICIOS = [empresa_service_1.EmpresaService, sucursal_service_1.SucursalService, proceso_service_1.ProcesoService, usuario_service_1.UsuarioService, grupo_service_1.GrupoService, rol_service_1.RolService, modulo_service_1.ModuloService];
 let SecurityModule = class SecurityModule {
 };
@@ -50,7 +51,7 @@ SecurityModule = __decorate([
     core_1.NgModule({
         imports: [
             forms_1.FormsModule, forms_1.ReactiveFormsModule,
-            ng2_bootstrap_1.TabsModule.forRoot(),
+            ng2_bootstrap_1.TabsModule.forRoot(), ng2_bootstrap_1.ModalModule.forRoot(),
             security_routing_module_1.SecurityRoutingModule, utils_module_1.UtilsModule, search_module_1.SearchModule, editors_module_1.EditorsModule, controls_module_1.ControlsModule, general_module_1.GeneralModule,
             wijmo_angular2_core_1.WjCoreModule, wijmo_angular2_input_1.WjInputModule, wijmo_angular2_grid_1.WjGridModule, wijmo_angular2_grid_filter_1.WjGridFilterModule
         ],

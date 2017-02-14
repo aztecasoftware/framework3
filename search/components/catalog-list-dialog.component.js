@@ -11,18 +11,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 //
 const ng2_bootstrap_1 = require("ng2-bootstrap");
+const index_1 = require("../../controls/index");
+const search_request_1 = require("../models/search-request");
 let CatalogListDialogComponent = class CatalogListDialogComponent {
     constructor() {
+        this.multiSelect = false;
+        //Outputs
+        this.searchRequested = new core_1.EventEmitter();
     }
     onSearchRequested(request) {
+        this.searchRequested.next(request);
     }
-    onCurrentItemChangedHandler(item) {
+    onCurrentItemChanged(item) {
     }
     onItemSelected(item) {
     }
     onConfirmClick() {
     }
     onCancelClick() {
+    }
+    triggerSearch() {
+        let request = new search_request_1.SearchRequest();
+        request.pageIndex = 0;
+        request.pageSize = this.pageSize;
+        request.paged = this.serverSide ? true : false;
+        //
+        this.searchRequested.next(request);
+    }
+    show() {
+        this.listDialog.config.backdrop = false;
+        this.listDialog.show();
     }
 };
 __decorate([
@@ -46,9 +64,21 @@ __decorate([
     __metadata("design:type", Number)
 ], CatalogListDialogComponent.prototype, "totalRows", void 0);
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], CatalogListDialogComponent.prototype, "multiSelect", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogListDialogComponent.prototype, "searchRequested", void 0);
+__decorate([
     core_1.ViewChild('listDialog'),
     __metadata("design:type", ng2_bootstrap_1.ModalDirective)
 ], CatalogListDialogComponent.prototype, "listDialog", void 0);
+__decorate([
+    core_1.ContentChildren(index_1.GridColumn),
+    __metadata("design:type", core_1.QueryList)
+], CatalogListDialogComponent.prototype, "columns", void 0);
 CatalogListDialogComponent = __decorate([
     core_1.Component({
         selector: 'catalog-list-dialog',
@@ -62,7 +92,7 @@ CatalogListDialogComponent = __decorate([
                                            (searchRequested)="onSearchRequested($event)"
                                            (currentItemChanged)="onCurrentItemChanged($event)"
                                            (itemSelected)="onItemSelected($event)"
-                                           [showSelectColumn]="true"
+                                           [showSelectColumn]="multiSelect"
                                            [serverSide]="serverSide"
                                            [pageSize]="pageSize"
                                            [totalRows]="totalRows"

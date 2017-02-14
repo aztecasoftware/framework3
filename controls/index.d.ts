@@ -1,6 +1,5 @@
 export * from './models/base-control';
 export * from './models/toolbar-button';
-export * from './models/catalog-selector';
 export * from './models/alert';
 export * from './models/menu-item';
 export * from './directives/bootstrap-input.directive';
@@ -12,9 +11,7 @@ export * from './components/az-combobox.component';
 export * from './components/az-label.component';
 export * from './components/az-textbox.component';
 export * from './components/az-toolbar.component';
-export * from './components/catalog-autocomplete.component';
 export * from './components/catalog-code.component';
-export * from './components/catalog-selector.component';
 export * from './components/image-box.component';
 export * from './components/form-field.component';
 export * from './components/grid-button-cell';

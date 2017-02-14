@@ -6,6 +6,7 @@ import { ToolbarButton } from '../../controls/index';
 import { PolicyInfo } from '../models/policy';
 import { UsuarioItem } from '../models/usuario';
 import { GrupoService } from '../services/grupo.service';
+import { UsuariosListComponent } from '../components/usuarios-list.component';
 export declare class GrupoMiembrosComponent extends BaseComponent {
     private context;
     private grupoService;
@@ -14,6 +15,7 @@ export declare class GrupoMiembrosComponent extends BaseComponent {
     private location;
     usuarios: UsuarioItem[];
     idGrupo: number;
+    usuariosDialog: UsuariosListComponent;
     constructor(context: Context, grupoService: GrupoService, router: Router, route: ActivatedRoute, location: Location);
     ngOnInit(): void;
     ngAfterViewInit(): void;

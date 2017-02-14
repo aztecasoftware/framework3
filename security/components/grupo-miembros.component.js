@@ -14,7 +14,9 @@ const common_1 = require("@angular/common");
 //
 const index_1 = require("../../index");
 const grupo_service_1 = require("../services/grupo.service");
+const usuarios_list_component_1 = require("../components/usuarios-list.component");
 let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseComponent {
+    //
     constructor(context, grupoService, router, route, location) {
         super();
         this.context = context;
@@ -32,6 +34,9 @@ let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseCo
         setTimeout(_ => this.refreshList());
     }
     onToolbarButtonClick(button) {
+        if (button.name == "ADD") {
+            this.usuariosDialog.show();
+        }
         if (button.name == "REFRESH") {
             this.refreshList();
         }
@@ -62,6 +67,10 @@ let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseCo
         this.context.app.hideSpinner();
     }
 };
+__decorate([
+    core_1.ViewChild(usuarios_list_component_1.UsuariosListComponent),
+    __metadata("design:type", usuarios_list_component_1.UsuariosListComponent)
+], GrupoMiembrosComponent.prototype, "usuariosDialog", void 0);
 GrupoMiembrosComponent = __decorate([
     core_1.Component({
         selector: 'security-grupo-miembros',
@@ -96,6 +105,10 @@ GrupoMiembrosComponent = __decorate([
               </az-panel>
           </div>
       </div>
+
+      <security-usuarios-list [multiSelect]="true">
+
+      </security-usuarios-list>
     `
     }),
     __metadata("design:paramtypes", [index_1.Context, grupo_service_1.GrupoService, router_1.Router, router_1.ActivatedRoute,

@@ -91,11 +91,6 @@ let CatalogListComponent = class CatalogListComponent {
     //Implementación 
     ngAfterViewInit() {
         this.setFilterType();
-        /*
-        if (this.showRowButton) {
-            setTimeout(_ => this.grid.refresh(true));
-        }
-        */
     }
     initialized(sender, args) {
         var self = this;
@@ -336,7 +331,7 @@ CatalogListComponent = __decorate([
                   </wj-flex-grid-column>
 
                   <!--Selection Column-->
-                  <wj-flex-grid-column *ngIf="showSelectColumn" [header]="col.header" [binding]="'selected'" dataType="Boolean" [width]="'45'"></wj-flex-grid-column>
+                  <wj-flex-grid-column *ngIf="showSelectColumn" [header]="''" [binding]="'selected'" dataType="Boolean" [width]="45"></wj-flex-grid-column>
 
                   <wj-flex-grid-filter #filter (filterChanged)="filterChanged(filter, $event)"></wj-flex-grid-filter>
                   <!--Agregar las columnas definidas en el template-->

@@ -17,19 +17,20 @@ const utils_module_1 = require("./utils/utils.module");
 const controls_module_1 = require("./controls/controls.module");
 const general_module_1 = require("./general/general.module");
 const custom_module_1 = require("./custom/custom.module");
+const editors_module_1 = require("./editors/editors.module");
 //
 let KernelModule = class KernelModule {
 };
 KernelModule = __decorate([
     core_1.NgModule({
         imports: [
-            security_module_1.SecurityModule, search_module_1.SearchModule, utils_module_1.UtilsModule, general_module_1.GeneralModule, controls_module_1.ControlsModule, custom_module_1.CustomModule,
+            security_module_1.SecurityModule, search_module_1.SearchModule, utils_module_1.UtilsModule, general_module_1.GeneralModule, controls_module_1.ControlsModule, custom_module_1.CustomModule, editors_module_1.EditorsModule,
             wijmo_angular2_input_1.WjInputModule, wijmo_angular2_grid_1.WjGridModule, wijmo_angular2_grid_filter_1.WjGridFilterModule
         ],
         declarations: [],
         providers: [],
         exports: [
-            security_module_1.SecurityModule, search_module_1.SearchModule, utils_module_1.UtilsModule, general_module_1.GeneralModule, controls_module_1.ControlsModule, custom_module_1.CustomModule,
+            security_module_1.SecurityModule, search_module_1.SearchModule, utils_module_1.UtilsModule, general_module_1.GeneralModule, controls_module_1.ControlsModule, custom_module_1.CustomModule, editors_module_1.EditorsModule,
             wijmo_angular2_input_1.WjInputModule, wijmo_angular2_grid_1.WjGridModule, wijmo_angular2_grid_filter_1.WjGridFilterModule
         ]
     })
