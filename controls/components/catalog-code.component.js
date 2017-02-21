@@ -39,7 +39,7 @@ let CatalogCodeComponent = CatalogCodeComponent_1 = class CatalogCodeComponent e
         }
     }
     onTextChanged(args) {
-        this.textChanged.next(args.target.value);
+        this.textChanged.emit(args.target.value);
         this.propagateChange(args.target.value);
     }
     //Implementación de control value accesor

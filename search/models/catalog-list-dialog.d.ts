@@ -1,5 +1,6 @@
+import { EventEmitter } from '@angular/core';
 import { CatalogListDialogComponent } from '../components/catalog-list-dialog.component';
-import { Context } from '../../index';
+import { Context, CatalogItem } from '../../index';
 export declare class CatalogListDialog {
     protected context: Context;
     serverSide: boolean;
@@ -7,7 +8,10 @@ export declare class CatalogListDialog {
     pageSize: number;
     totalRows: number;
     multiSelect: boolean;
+    excludedItems: CatalogItem[];
     listDialog: CatalogListDialogComponent;
+    selectedItemChanged: EventEmitter<CatalogItem>;
+    selectedItemsChanged: EventEmitter<CatalogItem[]>;
     constructor(context: Context);
     show(): void;
     handleError(error: any): void;

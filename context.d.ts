@@ -6,6 +6,7 @@ export declare class Context {
     private _application;
     readonly app: Application;
     readonly session: SessionInfo;
+    redirectUrl: string;
     readonly kernelImagesPath: string;
     readonly fileServerPath: string;
     setSession(session: SessionInfo): void;

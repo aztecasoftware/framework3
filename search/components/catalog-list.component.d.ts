@@ -37,6 +37,7 @@ export declare class CatalogListComponent {
     itemSelected: EventEmitter<CatalogItem>;
     contextMenuOpen: EventEmitter<CatalogItem>;
     rowButtonClick: EventEmitter<any>;
+    itemCheckedChanged: EventEmitter<CatalogItem>;
     private setFilterType();
     ngAfterViewInit(): void;
     initialized(sender: FlexGrid, args: any): void;
@@ -49,4 +50,5 @@ export declare class CatalogListComponent {
     createSearchRequest(pageIndex: number): SearchRequest;
     menuItemClicked(menu: Menu, args: any): void;
     onRowButtonClick(row: any): void;
+    onCellUpdated(args: CellRangeEventArgs): void;
 }

@@ -92,6 +92,7 @@ let EmpresasEditor = EmpresasEditor_1 = class EmpresasEditor extends index_3.Cat
             .then(info => {
             this.context.app.hideSpinner();
             this.empresa = info;
+            this.reset();
             if (args.closeEditor)
                 this.location.back();
             else
@@ -162,12 +163,12 @@ EmpresasEditor = EmpresasEditor_1 = __decorate([
 
         
               <div class="row">
-                  <div class="col-xs-10">
+                  <div class="col-xs-12 col-md-10 col-lg-10">
                       <tabset>
                           <tab heading="Domicilio">
 
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
 
                                       <azteca-form-field [label]="'Calle:'">
                                           <az-textbox formControlName="calle" [(ngModel)]="empresa.calle"></az-textbox>
@@ -177,12 +178,12 @@ EmpresasEditor = EmpresasEditor_1 = __decorate([
                               </div>
 
                               <div class="row">
-                                  <div class="col-xs-5 col-md-4">
+                                  <div class="col-xs-12 col-md-5">
                                       <azteca-form-field [label]="'Número Exterior:'">
                                           <az-textbox formControlName="numExt" [(ngModel)]="empresa.numExt"></az-textbox>                                    
                                       </azteca-form-field>
                                   </div>
-                                  <div class="col-xs-5 col-md-4">
+                                  <div class="col-xs-12 col-md-5">
                                       <azteca-form-field [label]="'Número Interior:'">
                                           <az-textbox formControlName="numInt" [(ngModel)]="empresa.numInt"></az-textbox>
                                       </azteca-form-field>
@@ -190,7 +191,7 @@ EmpresasEditor = EmpresasEditor_1 = __decorate([
                               </div>
 
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
 
                                       <azteca-form-field [label]="'Colonia:'">
                                           <az-textbox formControlName="colonia" [(ngModel)]="empresa.colonia"></az-textbox>                                    

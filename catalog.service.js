@@ -25,6 +25,9 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
         this.serviceUrl = serviceUrl;
         this.options = null;
     }
+    /**
+     * Carga las opciones de configuración del catálogo
+     */
     getOptions() {
         if (this.options == null) {
             let params = new http_1.URLSearchParams();
@@ -39,7 +42,17 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
             return Promise.resolve(this.options);
         }
     }
+    /**
+     * Envía la información al servidor
+     * @param info Paquete de información que se enviará al servidor
+     */
     update(info) {
+        //Si no tiene asignado la empresa y sucursal, asignar la actual
+        if (info.idBranch == 0)
+            info.idBranch = this.context.app.defaultSite.identity;
+        if (info.idCompany == 0)
+            info.idCompany = this.context.app.defaultCompany.identity;
+        //
         let params = new http_1.URLSearchParams();
         return this.apiService.postData('update', params, info)
             .map(response => {
@@ -47,6 +60,10 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
         })
             .toPromise();
     }
+    /**
+     * Carga la información del ID especificado
+     * @param itemID ID del elemento a cargar
+     */
     getDetailByID(itemID) {
         let params = new http_1.URLSearchParams();
         params.set('itemID', itemID.toString());
@@ -56,6 +73,11 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
         })
             .toPromise();
     }
+    /**
+     * Carga la información del elemento especificado a través de su código de usuario
+     * @param idBranch En caso del que el código no sea único, se buscará en la sucursal especificada
+     * @param code Codigo del elemento
+     */
     getDetailByCode(idBranch, code) {
         let params = new http_1.URLSearchParams();
         params.set('idBranch', idBranch.toString());
@@ -64,6 +86,10 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
             .map(response => response.json())
             .toPromise();
     }
+    /**
+     * Carga la información del elemento con ID, pero primero lo buscará en la caché del servidor
+     * @param itemID ID del elemento a cargar
+     */
     getDetailFromCache(itemID) {
         let params = new http_1.URLSearchParams();
         params.set('itemID', itemID.toString());
@@ -73,6 +99,10 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
         })
             .toPromise();
     }
+    /**
+     * Crea una copia del elemento con el ID especificado
+     * @param itemID ID del elemento a clonar
+     */
     clone(itemID) {
         let params = new http_1.URLSearchParams();
         params.set('originalID', itemID.toString());
@@ -82,15 +112,35 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
         })
             .toPromise();
     }
+    /**
+     * Crea una copia del objecto especificado
+     * @param info Objeto a clonar
+     */
+    copy(info) {
+        return JSON.parse(JSON.stringify(info));
+    }
+    /**
+     * Elimina el elemento con el ID especificado
+     * @param itemID ID del elemento a eliminar
+     */
     delete(itemID) {
         let params = new http_1.URLSearchParams();
         params.set('itemID', itemID.toString());
         return this.apiService.delete('delete', params)
             .toPromise();
     }
+    /**
+     * Verifica si existe un elemento con el ID especificado
+     * @param itemID ID del elemento a verificar
+     */
     exists(itemID) {
         return Promise.resolve(false);
     }
+    /**
+     * Cambia el estado del elemento con el ID especificado
+     * @param itemID ID del elemento a cambiar
+     * @param active Nuevo estatus
+     */
     changeStatus(itemID, active) {
         let params = new http_1.URLSearchParams();
         params.set('itemID', itemID.toString());
@@ -98,9 +148,18 @@ let CatalogService = class CatalogService extends base_service_1.BaseService {
         return this.apiService.postData('change-status', params, "")
             .toPromise();
     }
+    /**
+     * Obtiene los registros que cambiaron desde la fecha especificada
+     * @param lastUpdate Fecha desde la cual se obtendrán los registros modificados
+     */
     sync(lastUpdate) {
         return Promise.resolve(null);
     }
+    /**
+     * Realiza una búsqueda de los registros que cumplen con ciertas condiciones
+     * @param idBranch ID de la sucursal donde se realizará la busqueda, algunos catálogos ignoran éste parámetro
+     * @param request Condiciones de la búsqueda, orden de los resultados y parámetros de paginación
+     */
     search(idBranch, request) {
         let params = new http_1.URLSearchParams();
         params.set('idBranch', idBranch.toString());

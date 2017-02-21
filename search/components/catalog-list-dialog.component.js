@@ -15,20 +15,71 @@ const index_1 = require("../../controls/index");
 const search_request_1 = require("../models/search-request");
 let CatalogListDialogComponent = class CatalogListDialogComponent {
     constructor() {
+        this.selectedItems = [];
+        this.selectedItem = null;
+        this.list = [];
         this.multiSelect = false;
+        this.excludedItems = [];
         //Outputs
         this.searchRequested = new core_1.EventEmitter();
+        this.selectedItemChanged = new core_1.EventEmitter();
+        this.selectedItemsChanged = new core_1.EventEmitter();
+    }
+    ngOnChanges(changes) {
+        if (changes['catalogList'] && this.multiSelect) {
+            this.updateSelected();
+        }
+    }
+    updateSelected() {
+        if (this.catalogList == undefined)
+            return;
+        //Crear copia local de la colección y quitar los elementos excluidos
+        this.list = this.catalogList.slice();
+        if (this.excludedItems.length > 0) {
+            this.list = this.list.filter(fitem => !this.excludedItems.find(sitem => sitem.id == fitem.id));
+        }
+        //Marcar los elementos seleccionados
+        this.list.forEach(item => {
+            if (item.selected == undefined)
+                item.selected = false;
+            //Si el elemento se encuentra dentro de la colección de elementos seleccionados, cambiar estatus
+            if (this.selectedItems.find(selItem => selItem.id == item.id)) {
+                item.selected = true;
+            }
+        });
     }
     onSearchRequested(request) {
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
     }
     onCurrentItemChanged(item) {
+        this.selectedItem = item;
     }
     onItemSelected(item) {
+        //Sólo aplica cuando es de selección simple (doble click)
+        if (!this.multiSelect) {
+            this.selectedItemChanged.emit(item);
+            this.listDialog.hide();
+        }
+    }
+    onItemCheckedChanged(item) {
+        if (item.selected) {
+            this.selectedItems.push(item);
+        }
+        else {
+            this.selectedItems = this.selectedItems.filter(fItem => item.id != fItem.id);
+        }
     }
     onConfirmClick() {
+        if (this.multiSelect) {
+            this.selectedItemsChanged.emit(this.selectedItems);
+        }
+        else {
+            this.selectedItemChanged.emit(this.selectedItem);
+        }
+        this.listDialog.hide();
     }
     onCancelClick() {
+        this.listDialog.hide();
     }
     triggerSearch() {
         let request = new search_request_1.SearchRequest();
@@ -36,11 +87,21 @@ let CatalogListDialogComponent = class CatalogListDialogComponent {
         request.pageSize = this.pageSize;
         request.paged = this.serverSide ? true : false;
         //
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
     }
     show() {
+        this.selectedItems = [];
+        this.selectedItem = null;
         this.listDialog.config.backdrop = false;
         this.listDialog.show();
+    }
+    isValid() {
+        if (this.multiSelect) {
+            return this.selectedItems.length > 0;
+        }
+        else {
+            return this.selectedItem != null;
+        }
     }
 };
 __decorate([
@@ -68,9 +129,21 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CatalogListDialogComponent.prototype, "multiSelect", void 0);
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], CatalogListDialogComponent.prototype, "excludedItems", void 0);
+__decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], CatalogListDialogComponent.prototype, "searchRequested", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogListDialogComponent.prototype, "selectedItemChanged", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogListDialogComponent.prototype, "selectedItemsChanged", void 0);
 __decorate([
     core_1.ViewChild('listDialog'),
     __metadata("design:type", ng2_bootstrap_1.ModalDirective)
@@ -88,10 +161,11 @@ CatalogListDialogComponent = __decorate([
           <div class="modal-dialog modal-lg">
               <div class="modal-content">
                   <div class="modal-body">
-                      <azteca-catalog-list [catalogList]="catalogList"
+                      <azteca-catalog-list [catalogList]="list"
                                            (searchRequested)="onSearchRequested($event)"
                                            (currentItemChanged)="onCurrentItemChanged($event)"
                                            (itemSelected)="onItemSelected($event)"
+                                           (itemCheckedChanged)="onItemCheckedChanged($event)"
                                            [showSelectColumn]="multiSelect"
                                            [serverSide]="serverSide"
                                            [pageSize]="pageSize"
@@ -119,7 +193,7 @@ CatalogListDialogComponent = __decorate([
 
                   </div> <!-- Modal Body-->
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" (click)="onConfirmClick()">Aceptar</button>
+                      <button type="button" class="btn btn-primary" (click)="onConfirmClick()" [disabled]="!isValid()">Aceptar</button>
                       <button type="button" class="btn btn-default" (click)="onCancelClick()">Cancelar</button>
                   </div> <!-- Modal Footer-->
 

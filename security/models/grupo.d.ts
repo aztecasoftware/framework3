@@ -8,5 +8,6 @@ export declare class GrupoItem implements CatalogItem {
     codigo: string;
     nombre: string;
     activo: boolean;
+    selected: boolean;
     estatus?: string;
 }

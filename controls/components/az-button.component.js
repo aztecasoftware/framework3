@@ -25,7 +25,7 @@ let AzButtonComponent = AzButtonComponent_1 = class AzButtonComponent extends ba
     }
     //
     onClick() {
-        this.click.next();
+        this.click.emit();
     }
 };
 __decorate([

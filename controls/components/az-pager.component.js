@@ -21,20 +21,20 @@ let AzPagerComponent = class AzPagerComponent {
         return Math.ceil(this.totalRows / this.pageSize);
     }
     moveFirst() {
-        this.moveToFirst.next();
-        this.moveToPage.next(0);
+        this.moveToFirst.emit();
+        this.moveToPage.emit(0);
     }
     movePrevious() {
-        this.moveToPrevious.next();
-        this.moveToPage.next(this.pageIndex - 1);
+        this.moveToPrevious.emit();
+        this.moveToPage.emit(this.pageIndex - 1);
     }
     moveNext() {
-        this.moveToNext.next();
-        this.moveToPage.next(this.pageIndex + 1);
+        this.moveToNext.emit();
+        this.moveToPage.emit(this.pageIndex + 1);
     }
     moveLast() {
-        this.moveToLast.next();
-        this.moveToPage.next(this.pageCount);
+        this.moveToLast.emit();
+        this.moveToPage.emit(this.pageCount);
     }
 };
 __decorate([

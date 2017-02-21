@@ -88,9 +88,9 @@ let CatalogManagerComponent = class CatalogManagerComponent {
         this.catalogService.getOptions()
             .then(options => {
             if (options != null)
-                this.configureCatalog.next(options);
+                this.configureCatalog.emit(options);
             else {
-                this.configureCatalog.next(this.defaultOptions);
+                this.configureCatalog.emit(this.defaultOptions);
             }
             this.context.app.hideSpinner();
         })
@@ -103,7 +103,7 @@ let CatalogManagerComponent = class CatalogManagerComponent {
         request.pageSize = this.pageSize;
         request.paged = this.serverSide ? true : false;
         //
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
     }
     showAlert(message, type) {
         let newAlert = { msg: message, type: type, dismissOnTimeout: 5000, closable: true };
@@ -114,7 +114,7 @@ let CatalogManagerComponent = class CatalogManagerComponent {
     }
     searchRequestedHandler(request) {
         //Redireccionar request a componente padre
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
     }
     isMenuItemEnabled(tag) {
         let item = this.getMenuItem(tag);
@@ -169,7 +169,7 @@ let CatalogManagerComponent = class CatalogManagerComponent {
     }
     currentItemChangedHandler(item) {
         this.currentItem = item;
-        this.currentItemChanged.next(item);
+        this.currentItemChanged.emit(item);
     }
     onMenuItemClicked(menu, args) {
         let item = this.menuItems[menu.selectedIndex];
@@ -179,7 +179,7 @@ let CatalogManagerComponent = class CatalogManagerComponent {
         this.onValidateMenu(this.currentItem);
     }
     deleteItem() {
-        this.deletingItem.next(this.currentItem);
+        this.deletingItem.emit(this.currentItem);
         this.deleteDialog.hide();
     }
     hideDeleteDialog() {
@@ -187,22 +187,22 @@ let CatalogManagerComponent = class CatalogManagerComponent {
     }
     optionClick(option) {
         if (option.name == "OPEN")
-            this.viewingItem.next(this.currentItem);
+            this.viewingItem.emit(this.currentItem);
         if (option.name == "EDIT")
-            this.editingItem.next(this.currentItem);
+            this.editingItem.emit(this.currentItem);
         if (option.name == "DELETE") {
             this.deleteDialog.config.backdrop = false;
             this.deleteDialog.show();
         }
         if (option.name == "CLONE")
-            this.cloningItem.next(this.currentItem);
+            this.cloningItem.emit(this.currentItem);
         if (option.name == "STATE")
-            this.changingItemState.next(this.currentItem);
+            this.changingItemState.emit(this.currentItem);
         //Disparar evento genérico con cualquier opción de menú, principalmente dirigido a notificar acciones personalizadas
-        this.menuItemClick.next(option);
+        this.menuItemClick.emit(option);
     }
     newItemHandler() {
-        this.addingItem.next();
+        this.addingItem.emit();
     }
     handleError(error) {
         this.context.app.hideSpinner();
@@ -333,7 +333,7 @@ CatalogManagerComponent = __decorate([
                   <button type="button" class="btn btn-primary" (click)="newItemHandler()" *ngIf="enabled && allowNew">
                       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo
                   </button>
-                  <button type="button" class="btn btn-default" (click)="triggerSearch()">
+                  <button type="button" class="btn btn-default hidden-xs" (click)="triggerSearch()">
                       <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualizar
                   </button>
                   <wj-menu #menu

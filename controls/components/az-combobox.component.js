@@ -25,12 +25,14 @@ let AzComboboxComponent = AzComboboxComponent_1 = class AzComboboxComponent exte
         this.propagateChange = (_) => { };
     }
     onChange(args) {
-        this.selectedItemChanged.next(this.selectedItem);
-        this.propagateChange(this.value);
+        let value = this.selectedItem[this.valueMember];
+        this.selectedItemChanged.emit(this.selectedItem);
+        this.propagateChange(value);
     }
     //Implementación de control value accesor
     writeValue(value) {
-        this.value = value ? value : '';
+        //Encontrar elemento con el valor que se está escribiendo
+        this.selectedItem = this.items.find(item => item[this.valueMember] == value);
     }
     registerOnChange(fn) {
         this.propagateChange = fn;
@@ -51,10 +53,6 @@ __decorate([
 ], AzComboboxComponent.prototype, "valueMember", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", String)
-], AzComboboxComponent.prototype, "value", void 0);
-__decorate([
-    core_1.Input(),
     __metadata("design:type", Object)
 ], AzComboboxComponent.prototype, "selectedItem", void 0);
 __decorate([
@@ -66,8 +64,8 @@ AzComboboxComponent = AzComboboxComponent_1 = __decorate([
         selector: 'az-combobox',
         template: `
       <div *ngIf="visible">
-      	<select #combobox [(ngModel)]="selectedItem" [value]="value" (change)="onChange($event)" [disabled]="!enabled">
-              <option *ngFor="let item of items; le i = index" [value]="item[valueMember]" [ngValue]="item">{{item[displayMember]}}</option>
+      	<select #combobox [(ngModel)]="selectedItem" (change)="onChange($event)" [disabled]="!enabled" class="form-control">
+              <option *ngFor="let item of items" [ngValue]="item">{{item[displayMember]}}</option>
       		<ng-content></ng-content>
       	</select>    
       </div>

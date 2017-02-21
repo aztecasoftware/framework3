@@ -69,7 +69,7 @@ let ImageBoxComponent = ImageBoxComponent_1 = class ImageBoxComponent extends ba
                 reader.onload = (args) => {
                     info.content = args.target.result;
                     this.imageFile = info;
-                    self.fileChanged.next(info);
+                    self.fileChanged.emit(info);
                     this.propagateChange(info);
                     self.updateImageSrc();
                 };
@@ -82,7 +82,7 @@ let ImageBoxComponent = ImageBoxComponent_1 = class ImageBoxComponent extends ba
         this.renderer.invokeElementMethod(this.fileInput.nativeElement, 'dispatchEvent', [event]);
     }
     removeFile() {
-        this.fileChanged.next(null);
+        this.fileChanged.emit(null);
         this.propagateChange(null);
         this.imageFile = null;
         this.updateImageSrc();

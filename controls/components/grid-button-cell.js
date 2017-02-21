@@ -16,7 +16,7 @@ let GridButtonCell = class GridButtonCell {
         this.click = new core_1.EventEmitter();
     }
     onClick(row) {
-        this.click.next(row);
+        this.click.emit(row);
     }
 };
 __decorate([

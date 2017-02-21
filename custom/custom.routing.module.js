@@ -11,9 +11,12 @@ const router_1 = require("@angular/router");
 const custom_catalog_manager_1 = require("./components/custom-catalog.manager");
 const ensamblados_manager_1 = require("./components/ensamblados.manager");
 const ensamblados_editor_1 = require("./components/ensamblados.editor");
+//
+const index_1 = require("../security/index");
 const routes = [
     {
         path: 'kernel/custom',
+        canActivateChild: [index_1.AuthGuard],
         children: [
             { path: 'catalogos', component: custom_catalog_manager_1.CustomCatalogManager },
             { path: 'ensamblados', component: ensamblados_manager_1.EnsambladosManager },

@@ -38,24 +38,24 @@ let CatalogSelectorComponent = class CatalogSelectorComponent {
         request.pageSize = this.pageSize;
         request.paged = this.serverSide ? true : false;
         //
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
     }
     hideListDialog() {
         this.listDialog.hide();
     }
     searchRequestedHandler(request) {
         //Redireccionar request a componente padre
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
     }
     currentItemChangedHandler(item) {
         this.selectedRow = item;
     }
     selectItem(item) {
-        this.selectedItemChanged.next(item);
+        this.selectedItemChanged.emit(item);
         this.hideListDialog();
     }
     clear() {
-        this.selectedItemChanged.next(null);
+        this.selectedItemChanged.emit(null);
     }
     refreshControls() {
         wijmo.Control.invalidateAll();

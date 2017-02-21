@@ -5,7 +5,6 @@ export declare class AzComboboxComponent extends BaseControl implements ControlV
     items: any[];
     displayMember: string;
     valueMember: string;
-    value: string;
     selectedItem: any;
     selectedItemChanged: EventEmitter<any>;
     onChange(args: any): void;

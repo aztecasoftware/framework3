@@ -17,6 +17,7 @@ const utils_module_1 = require("../utils/utils.module");
 //Directivas
 const bootstrap_input_directive_1 = require("./directives/bootstrap-input.directive");
 const toolbar_button_directive_1 = require("./directives/toolbar-button.directive");
+const toolbar_menu_directive_1 = require("./directives/toolbar-menu.directive");
 const grid_column_1 = require("./directives/grid-column");
 const menu_item_directive_1 = require("./directives/menu-item.directive");
 //Componentes
@@ -30,9 +31,13 @@ const form_field_component_1 = require("./components/form-field.component");
 const image_box_component_1 = require("./components/image-box.component");
 const catalog_code_component_1 = require("./components/catalog-code.component");
 const grid_button_cell_1 = require("./components/grid-button-cell");
-let COMPONENTES = [bootstrap_input_directive_1.BootstrapInputDirective, toolbar_button_directive_1.ToolbarButtonDirective, menu_item_directive_1.MenuItemDirective, grid_column_1.GridColumn,
+const alerts_bar_component_1 = require("./components/alerts-bar.component");
+const az_textarea_component_1 = require("./components/az-textarea.component");
+const az_combobox_component_1 = require("./components/az-combobox.component");
+let COMPONENTES = [bootstrap_input_directive_1.BootstrapInputDirective, toolbar_button_directive_1.ToolbarButtonDirective, menu_item_directive_1.MenuItemDirective, grid_column_1.GridColumn, az_textarea_component_1.AzTextareaComponent,
     form_field_component_1.FormFieldComponent, image_box_component_1.ImageBoxComponent, az_label_component_1.AzLabelComponent, az_button_component_1.AzButtonComponent, az_textbox_component_1.AzTextboxComponent, az_toolbar_component_1.AzToolbarComponent,
-    catalog_code_component_1.CatalogCodeComponent, az_pager_component_1.AzPagerComponent, az_panel_component_1.AzPanelComponent, grid_button_cell_1.GridButtonCell];
+    catalog_code_component_1.CatalogCodeComponent, az_pager_component_1.AzPagerComponent, az_panel_component_1.AzPanelComponent, grid_button_cell_1.GridButtonCell, alerts_bar_component_1.AlertsBarComponent, az_combobox_component_1.AzComboboxComponent,
+    toolbar_menu_directive_1.ToolbarMenuDirective];
 let SERVICIOS = [];
 let ControlsModule = class ControlsModule {
 };

@@ -1,8 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { BaseComponent, Context } from '../../index';
-import { SearchRequest } from '../../search/index';
-import { ToolbarButton } from '../../controls/index';
+import { BaseComponent, Context, CatalogItem } from '../../index';
+import { ToolbarButton, AlertsBarComponent } from '../../controls/index';
 import { PolicyInfo } from '../models/policy';
 import { UsuarioItem } from '../models/usuario';
 import { GrupoService } from '../services/grupo.service';
@@ -15,14 +14,17 @@ export declare class GrupoMiembrosComponent extends BaseComponent {
     private location;
     usuarios: UsuarioItem[];
     idGrupo: number;
+    currentItem: CatalogItem;
     usuariosDialog: UsuariosListComponent;
+    alerts: AlertsBarComponent;
     constructor(context: Context, grupoService: GrupoService, router: Router, route: ActivatedRoute, location: Location);
     ngOnInit(): void;
     ngAfterViewInit(): void;
+    onCurrentItemChanged(item: CatalogItem): void;
     onToolbarButtonClick(button: ToolbarButton): void;
     refreshList(): void;
-    onSearchRequest(request: SearchRequest): void;
-    onDeleteRow(item: UsuarioItem): void;
+    onSelectedUsersChanged(newUsers: UsuarioItem[]): void;
+    onRemoveUser(): void;
     applyPolicy(policy: PolicyInfo): void;
     handleError(error: any): void;
 }

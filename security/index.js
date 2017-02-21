@@ -17,6 +17,7 @@ __export(require("./services/empresa.service"));
 __export(require("./services/sucursal.service"));
 __export(require("./services/grupo.service"));
 __export(require("./services/proceso.service"));
+__export(require("./services/auth-guard.service"));
 ////////// COMPONENTES Y DIRECTIVAS ////////////////////////
 __export(require("./components/empresas.editor"));
 __export(require("./components/empresas.manager"));

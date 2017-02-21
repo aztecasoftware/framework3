@@ -30,7 +30,7 @@ let CatalogAutocompleteComponent = class CatalogAutocompleteComponent {
         this.autocomplete.displayMemberPath = this.displayMember;
         this.autocomplete.maxItems = 2;
         //Crear referencia a servicio web
-        this.apiService = new index_1.WebService(this.http, this.serviceUrl + '/' + this.context.session.sessionID);
+        this.apiService = new index_1.WebService(this.http, this.serviceUrl, this.context);
         //
         this.autocomplete.itemsSourceFunction = function (query, max, callback) {
             let params;

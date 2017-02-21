@@ -96,6 +96,7 @@ let SucursalesEditor = SucursalesEditor_1 = class SucursalesEditor extends index
             .then(info => {
             this.context.app.hideSpinner();
             this.sucursal = info;
+            this.reset();
             if (args.closeEditor)
                 this.location.back();
             else
@@ -123,9 +124,14 @@ SucursalesEditor = SucursalesEditor_1 = __decorate([
                                  (savingItem)="onSavingItem($event)"
                                  (loadingItem)="onLoadingItem($event)">
 
+              <!------------------- Menu de acciones adicionales --------------------->
+              <azteca-menu-item [name]="'USERS'" [icon]="'glyphicon glyphicon-user'" [text]="'Miembros'" [smallText]="'editar usuarios miembro'"></azteca-menu-item>
+
+
+              <!------------------- Controles del editor ----------------------------->
               <div class="row">
 
-                  <div class="col-xs-10 col-md-10">
+                  <div class="col-xs-12 col-md-10">
                       <azteca-form-field [label]="'Código:'">
                           <az-textbox formControlName="codigo" [(ngModel)]="sucursal.code"></az-textbox>
                       </azteca-form-field>
@@ -142,39 +148,39 @@ SucursalesEditor = SucursalesEditor_1 = __decorate([
               <br />
 
               <div class="row">
-                  <div class="col-xs-10">
+                  <div class="col-xs-12 col-md-10">
                       <tabset>
                           <tab heading="Contacto">
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
                                       <azteca-form-field [label]="'Telefono 1:'">
                                           <az-textbox formControlName="telefono1" [(ngModel)]="sucursal.telefono1"></az-textbox>
                                       </azteca-form-field>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
                                       <azteca-form-field [label]="'Telefono 2:'">
                                           <az-textbox formControlName="telefono2" [(ngModel)]="sucursal.telefono2"></az-textbox>
                                       </azteca-form-field>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
                                       <azteca-form-field [label]="'Fax:'">
                                           <az-textbox formControlName="fax" [(ngModel)]="sucursal.fax"></az-textbox>
                                       </azteca-form-field>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
                                       <azteca-form-field [label]="'Página Web:'">
                                           <az-textbox formControlName="paginaWeb" [(ngModel)]="sucursal.paginaWeb"></az-textbox>
                                       </azteca-form-field>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
                                       <azteca-form-field [label]="'Correo:'">
                                           <az-textbox formControlName="correo" [(ngModel)]="sucursal.correo"></az-textbox>
                                       </azteca-form-field>
@@ -184,26 +190,26 @@ SucursalesEditor = SucursalesEditor_1 = __decorate([
 
                           <tab heading="Domicilio">
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
                                       <azteca-form-field [label]="'Calle:'">
                                           <az-textbox formControlName="calle" [(ngModel)]="sucursal.calle"></az-textbox>
                                       </azteca-form-field>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-xs-5 col-md-4">
+                                  <div class="col-xs-12 col-md-5">
                                       <azteca-form-field [label]="'Número Exterior:'">
                                           <az-textbox formControlName="numExt" [(ngModel)]="sucursal.numExt"></az-textbox>
                                       </azteca-form-field>
                                   </div>
-                                  <div class="col-xs-5 col-md-4">
+                                  <div class="col-xs-12 col-md-5">
                                       <azteca-form-field [label]="'Número Interior:'">
                                           <az-textbox formControlName="numInt" [(ngModel)]="sucursal.numInt"></az-textbox>
                                       </azteca-form-field>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-xs-10 col-md-8">
+                                  <div class="col-xs-12 col-md-10">
 
                                       <azteca-form-field [label]="'Colonia:'">
                                           <az-textbox formControlName="colonia" [(ngModel)]="sucursal.colonia"></az-textbox>
@@ -217,8 +223,6 @@ SucursalesEditor = SucursalesEditor_1 = __decorate([
                               </div>
                           </tab>
 
-                          <tab heading="Miembros" [disabled]="sucursal.identity == 0" (select)="selectMiembrosTab()">
-                          </tab>
                       </tabset>
                   </div>
               </div>

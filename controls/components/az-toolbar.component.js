@@ -13,13 +13,20 @@ const forms_1 = require("@angular/forms");
 const base_component_1 = require("../../base-component");
 const policies_1 = require("../../security/models/policies");
 const toolbar_button_directive_1 = require("../directives/toolbar-button.directive");
+const toolbar_menu_directive_1 = require("../directives/toolbar-menu.directive");
 let AzToolbarComponent = AzToolbarComponent_1 = class AzToolbarComponent extends base_component_1.BaseComponent {
     constructor() {
         super(...arguments);
+        //
         this.buttonClick = new core_1.EventEmitter();
+        this.menuItemClick = new core_1.EventEmitter();
     }
     onButtonClick(button) {
-        this.buttonClick.next(button);
+        this.buttonClick.emit(button);
+    }
+    onMenuItemClicked(menu, wijMenu) {
+        let item = menu.menuItems[wijMenu.selectedIndex];
+        this.menuItemClick.emit(item);
     }
     //Implementación de políticas
     applyPolicy(policy) {
@@ -40,17 +47,42 @@ __decorate([
     __metadata("design:type", core_1.QueryList)
 ], AzToolbarComponent.prototype, "buttons", void 0);
 __decorate([
+    core_1.ContentChildren(toolbar_menu_directive_1.ToolbarMenuDirective),
+    __metadata("design:type", core_1.QueryList)
+], AzToolbarComponent.prototype, "menus", void 0);
+__decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], AzToolbarComponent.prototype, "buttonClick", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], AzToolbarComponent.prototype, "menuItemClick", void 0);
 AzToolbarComponent = AzToolbarComponent_1 = __decorate([
     core_1.Component({
         selector: 'az-toolbar',
         template: `
       <div class="btn-group">
-          <button *ngFor="let btn of buttons" type="button" [ngClass]="btn.buttonClass" (click)="onButtonClick(btn)" [disabled]="!btn.enabled">
+          <button *ngFor="let btn of buttons" type="button" [ngClass]="btn.buttonClass" [title]="btn.toolTip" (click)="onButtonClick(btn)" [disabled]="!btn.enabled">
               <span [class]="btn.icon" aria-hidden="true"></span> {{btn.text}}
           </button>
+
+          <wj-menu *ngFor="let menu of menus"
+                   #wijMenu
+                   (itemClicked)="onMenuItemClicked(menu, wijMenu)"
+                   [isDisabled]="!menu.enabled"
+                   [header]="menu.header">
+
+              <wj-menu-item *ngFor="let item of menu.menuItems">
+                  <div *ngIf="menu.enabled && item.enabled">
+                      <span [class]="item.icon"></span>
+                      <b>{{item.text}}</b>
+                      <br>
+                      <small><i>{{item.smallText}}</i></small>
+                  </div>
+              </wj-menu-item>
+          </wj-menu>
+
       </div>
     `,
         providers: [{

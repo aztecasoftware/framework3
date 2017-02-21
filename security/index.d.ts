@@ -11,6 +11,7 @@ export * from './services/empresa.service';
 export * from './services/sucursal.service';
 export * from './services/grupo.service';
 export * from './services/proceso.service';
+export * from './services/auth-guard.service';
 export * from './components/empresas.editor';
 export * from './components/empresas.manager';
 export * from './components/sucursales.editor';

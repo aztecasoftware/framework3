@@ -8,6 +8,7 @@ __export(require("./models/alert"));
 /////////////// DIRECTIVAS ////////////////////////
 __export(require("./directives/bootstrap-input.directive"));
 __export(require("./directives/toolbar-button.directive"));
+__export(require("./directives/menu-item.directive"));
 __export(require("./directives/grid-column"));
 __export(require("./directives/menu-item.directive"));
 /////////////  COMPONENTES ///////////////////////////
@@ -20,5 +21,7 @@ __export(require("./components/catalog-code.component"));
 __export(require("./components/image-box.component"));
 __export(require("./components/form-field.component"));
 __export(require("./components/grid-button-cell"));
+__export(require("./components/alerts-bar.component"));
+__export(require("./components/az-textarea.component"));
 //
 __export(require("./validators"));

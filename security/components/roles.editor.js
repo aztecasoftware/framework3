@@ -77,6 +77,7 @@ let RolesEditor = RolesEditor_1 = class RolesEditor extends index_2.CatalogEdito
             .then(info => {
             this.context.app.hideSpinner();
             this.rol = info;
+            this.reset();
             if (args.closeEditor)
                 this.location.back();
             else

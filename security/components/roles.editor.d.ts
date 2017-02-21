@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Context } from '../../index';
-import { CatalogOptions } from '../models/catalog-options';
+import { CatalogOptions } from '../../custom/index';
 import { CatalogEditor, EditorEventArgs } from '../../editors/index';
 import { RolService } from '../services/rol.service';
 import { RolInfo } from '../models/rol';

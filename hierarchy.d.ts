@@ -13,6 +13,7 @@ export declare abstract class HierarchyInfo<TNode extends HierarchyInfo<TNode>> 
     children: TNode[];
     clientID: number;
     readonly icon: string;
+    constructor();
 }
 /**
  * Implementación base de HierarchyInfo
@@ -24,5 +25,5 @@ export declare class HierarchyNode extends HierarchyInfo<HierarchyNode> {
  */
 export declare class HierarchyChanges<TNode extends HierarchyInfo<TNode>> {
     nodes: TNode[];
-    deletedNodes: number[];
+    deletedNodes: TNode[];
 }

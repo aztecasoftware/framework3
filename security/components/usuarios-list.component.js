@@ -29,13 +29,22 @@ let UsuariosListComponent = class UsuariosListComponent extends index_2.CatalogL
         })
             .catch(error => this.handleError(error));
     }
+    onSelectedItemsChanged(selectedUsers) {
+        this.selectedItemsChanged.emit(selectedUsers);
+    }
+    onSelectedItemChanged(user) {
+        this.selectedItemChanged.emit(user);
+    }
 };
 UsuariosListComponent = __decorate([
     core_1.Component({
         selector: 'security-usuarios-list',
         template: `
       <catalog-list-dialog    (searchRequested)="onSearchRequested($event)"
+                              (selectedItemsChanged)="onSelectedItemsChanged($event)"
+                              (selectedItemChanged)="onSelectedItemChanged($event)"
                               [catalogList]="usuarios"
+                              [excludedItems]="excludedItems"
                               [multiSelect]="multiSelect"
                               [serverSide]="serverSide"
                               [pageSize]="pageSize"
@@ -43,8 +52,8 @@ UsuariosListComponent = __decorate([
                               [pageIndex]="pageIndex">
 
 
-          <azteca-grid-column [header]="'ID'" [binding]="'id'" dataType="Number" [width]="'10*'"></azteca-grid-column>
-          <azteca-grid-column [header]="'Usuario'" [binding]="'codigo'" [width]="'10*'"></azteca-grid-column>
+          <azteca-grid-column [header]="'ID'" [binding]="'id'" dataType="Number" [width]="50"></azteca-grid-column>
+          <azteca-grid-column [header]="'Usuario'" [binding]="'codigo'" [width]="'20*'"></azteca-grid-column>
           <azteca-grid-column [header]="'Nombre'" [binding]="'nombre'" [width]="'60*'"></azteca-grid-column>
           <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'20*'"></azteca-grid-column>
 

@@ -23,7 +23,8 @@ AzLabelComponent = AzLabelComponent_1 = __decorate([
         selector: 'az-label',
         template: `
       <div *ngIf="visible">
-          <label class="label label-default">{{text}}</label>
+          <h3 class="label label-info">{{text}}</h3>
+          <br />
       </div>
       <div *ngIf="!visible">
           <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>

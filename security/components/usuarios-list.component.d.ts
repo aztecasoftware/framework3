@@ -8,4 +8,6 @@ export declare class UsuariosListComponent extends CatalogListDialog {
     usuarios: UsuarioItem[];
     constructor(context: Context, usuarioService: UsuarioService);
     onSearchRequested(request: SearchRequest): void;
+    onSelectedItemsChanged(selectedUsers: UsuarioItem[]): void;
+    onSelectedItemChanged(user: UsuarioItem): void;
 }

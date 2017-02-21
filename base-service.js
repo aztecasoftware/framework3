@@ -21,10 +21,7 @@ let BaseService = class BaseService {
         this.http = http;
         this.context = context;
         this.serviceUrl = serviceUrl;
-        if (this.context.session != null)
-            this.apiService = new webapi_1.WebService(http, serviceUrl, this.context.session.sessionID);
-        else
-            this.apiService = new webapi_1.WebService(http, serviceUrl);
+        this.apiService = new webapi_1.WebService(http, serviceUrl, context);
     }
 };
 BaseService = __decorate([

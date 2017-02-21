@@ -5,7 +5,7 @@ import { Menu } from 'wijmo/wijmo.input';
 import { EditorEventArgs } from '../models/editor-event-args';
 import { Context, CatalogInfo, CatalogService } from '../../index';
 import { CatalogOptions } from '../../custom/models/catalog-options';
-import { Alert, MenuItemDirective, MenuItem } from '../../controls/index';
+import { MenuItemDirective, MenuItem, AlertsBarComponent } from '../../controls/index';
 export declare class CatalogEditorComponent {
     private router;
     private route;
@@ -14,8 +14,8 @@ export declare class CatalogEditorComponent {
     private catalogService;
     identity: number;
     readonlyMode: boolean;
-    alerts: Alert[];
     widthClass: string[];
+    canceled: boolean;
     defaultOptions: CatalogOptions;
     info: CatalogInfo;
     title: string;
@@ -29,16 +29,17 @@ export declare class CatalogEditorComponent {
     savingItem: EventEmitter<EditorEventArgs>;
     menuItemClick: EventEmitter<MenuItem>;
     menuItems: QueryList<MenuItemDirective>;
+    alerts: AlertsBarComponent;
     constructor(router: Router, route: ActivatedRoute, location: Location, context: Context, catalogService: CatalogService<CatalogInfo>);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     loadConfiguration(): void;
     triggerOperation(): void;
     showAlert(message: string, type: string): void;
-    closeAlert(i: number): void;
     private saveHandler();
     private saveCloseHanlder();
     protected onSaveItem(closeEditor: boolean): void;
+    reset(): void;
     closeEditor(): void;
     onMenuItemClicked(menu: Menu, args: any): void;
     private handleError(error);

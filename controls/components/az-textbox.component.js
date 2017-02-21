@@ -22,7 +22,7 @@ let AzTextboxComponent = AzTextboxComponent_1 = class AzTextboxComponent extends
         this.propagateChange = (_) => { };
     }
     onTextChanged(args) {
-        this.textChanged.next(args.target.value);
+        this.textChanged.emit(args.target.value);
         this.propagateChange(args.target.value);
     }
     //Implementación de control value accesor
@@ -51,7 +51,7 @@ AzTextboxComponent = AzTextboxComponent_1 = __decorate([
         selector: 'az-textbox',
         template: `
       <div *ngIf="visible">
-          <input type="text" #textbox [value]="text" (keyup)="onTextChanged($event)" [disabled]="!enabled" />
+          <input type="text" #textbox [(ngModel)]="text" (keyup)="onTextChanged($event)" [disabled]="!enabled" />
       </div>
       <div *ngIf="!visible">
           <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>

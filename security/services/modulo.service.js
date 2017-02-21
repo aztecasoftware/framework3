@@ -23,6 +23,11 @@ let ModuloService = class ModuloService extends index_1.HierarchyService {
     create() {
         return Promise.resolve(new modulo_1.ModuloInfo());
     }
+    loadCategories() {
+        return this.apiService.getData('load-categories', null)
+            .map(response => response.json())
+            .toPromise();
+    }
 };
 ModuloService = __decorate([
     core_1.Injectable(),

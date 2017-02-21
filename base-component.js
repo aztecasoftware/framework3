@@ -25,6 +25,14 @@ class BaseComponent {
     }
     applyPolicies(policies) {
     }
+    getErrorMessage(error) {
+        let message = 'error';
+        if (error._body != undefined)
+            message = error._body;
+        else if (error.statusText != undefined)
+            message = error.statusText;
+        return message;
+    }
 }
 __decorate([
     core_1.Input(),

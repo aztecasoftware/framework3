@@ -19,19 +19,23 @@ const roles_editor_1 = require("./components/roles.editor");
 const modulos_manager_1 = require("./components/modulos.manager");
 //Parts
 const grupo_miembros_component_1 = require("./components/grupo-miembros.component");
+//Guards
+const index_1 = require("../editors/index");
+const auth_guard_service_1 = require("./services/auth-guard.service");
 const routes = [
     {
         path: 'kernel/security',
+        canActivateChild: [auth_guard_service_1.AuthGuard],
         children: [
             { path: 'empresas', component: empresas_manager_1.EmpresasManager },
-            { path: 'empresas/:id', component: empresas_editor_1.EmpresasEditor },
+            { path: 'empresas/:id', component: empresas_editor_1.EmpresasEditor, canDeactivate: [index_1.EditorDeactivateGuard] },
             { path: 'sucursales', component: sucursales_manager_1.SucursalesManager },
-            { path: 'sucursales/:idEmpresa/:id', component: sucursales_editor_1.SucursalesEditor },
+            { path: 'sucursales/:idEmpresa/:id', component: sucursales_editor_1.SucursalesEditor, canDeactivate: [index_1.EditorDeactivateGuard] },
             { path: 'grupos', component: grupos_manager_1.GruposManager },
-            { path: 'grupos/:id', component: grupos_editor_1.GruposEditor },
+            { path: 'grupos/:id', component: grupos_editor_1.GruposEditor, canDeactivate: [index_1.EditorDeactivateGuard] },
             { path: 'grupos/:id/members', component: grupo_miembros_component_1.GrupoMiembrosComponent },
             { path: 'roles', component: roles_manager_1.RolesManager },
-            { path: 'roles/:id', component: roles_editor_1.RolesEditor },
+            { path: 'roles/:id', component: roles_editor_1.RolesEditor, canDeactivate: [index_1.EditorDeactivateGuard] },
             { path: 'modulos', component: modulos_manager_1.ModulosManager }
         ]
     },

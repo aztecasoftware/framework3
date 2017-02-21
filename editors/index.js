@@ -8,6 +8,7 @@ __export(require("./models/catalog-editor"));
 __export(require("./models/catalog-manager"));
 __export(require("./models/hierarchy-manager"));
 //////////////////////////// SERVICES ///////////////////////////////
+__export(require("./services/editor-deactivate-guard.service"));
 ///////////////////// COMPONENTES Y DIRECTIVAS ////////////////////////
 __export(require("./components/catalog-editor.component"));
 __export(require("./components/catalog-manager.component"));

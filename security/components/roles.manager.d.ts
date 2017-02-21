@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Context, CatalogItem } from '../../index';
-import { CatalogOptions } from '../models/catalog-options';
+import { CatalogOptions } from '../../custom/index';
 import { CatalogManager } from '../../editors/index';
 import { SearchRequest } from '../../search/index';
 import { RolService } from '../services/rol.service';

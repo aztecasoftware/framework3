@@ -1,20 +1,31 @@
+import { ChangeDetectorRef } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { TreeNode } from 'angular2-tree-component';
-import { Context } from '../../index';
+import { Context, HierarchyChanges } from '../../index';
 import { CatalogOptions } from '../../custom/models/catalog-options';
 import { HierarchyManager } from '../../editors/index';
 import { ModuloInfo } from '../models/modulo';
 import { ModuloService } from '../services/modulo.service';
+import { CategoriaModulos } from '../models/categoria-modulos';
 export declare class ModulosManager extends HierarchyManager {
-    private context;
+    protected context: Context;
+    protected changeDetector: ChangeDetectorRef;
     private moduloService;
+    private formBuilder;
     modulos: ModuloInfo[];
+    moduloEdicion: ModuloInfo;
     currentNode: TreeNode;
-    constructor(context: Context, moduloService: ModuloService);
+    currentParent: TreeNode;
+    categorias: CategoriaModulos[];
+    constructor(context: Context, changeDetector: ChangeDetectorRef, moduloService: ModuloService, formBuilder: FormBuilder);
     onConfigureCatalog(options: CatalogOptions): void;
     loadHierarchy(): void;
+    onNodesChanged(modulos: ModuloInfo[]): void;
     onCurrentNodeChanged(node: TreeNode): void;
     onCreatingNode(parentNode: TreeNode): void;
     onEditingNode(node: TreeNode): void;
-    onSavingNode(info: ModuloInfo): void;
-    savingHierarchy(modulos: ModuloInfo[]): void;
+    onSavingNode(): void;
+    onDeletingNode(node: TreeNode): void;
+    onSavingHierarchy(changes: HierarchyChanges<ModuloInfo>): void;
+    loadCategorias(): void;
 }

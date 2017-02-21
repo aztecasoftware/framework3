@@ -11,13 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const catalog_list_dialog_component_1 = require("../components/catalog-list-dialog.component");
 class CatalogListDialog {
-    //
     constructor(context) {
         this.context = context;
         this.serverSide = false;
         this.pageIndex = 0;
         this.pageSize = 15;
         this.multiSelect = false;
+        this.excludedItems = [];
+        //    
+        this.selectedItemChanged = new core_1.EventEmitter();
+        this.selectedItemsChanged = new core_1.EventEmitter();
     }
     show() {
         this.listDialog.triggerSearch();
@@ -49,7 +52,19 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CatalogListDialog.prototype, "multiSelect", void 0);
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], CatalogListDialog.prototype, "excludedItems", void 0);
+__decorate([
     core_1.ViewChild(catalog_list_dialog_component_1.CatalogListDialogComponent),
     __metadata("design:type", catalog_list_dialog_component_1.CatalogListDialogComponent)
 ], CatalogListDialog.prototype, "listDialog", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogListDialog.prototype, "selectedItemChanged", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogListDialog.prototype, "selectedItemsChanged", void 0);
 exports.CatalogListDialog = CatalogListDialog;

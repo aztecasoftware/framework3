@@ -8,4 +8,5 @@ export declare abstract class BaseComponent {
     abstract applyPolicy(policy: PolicyInfo): void;
     isPolicyApplied(policyName: string): boolean;
     applyPolicies(policies: PolicyInfo[]): void;
+    getErrorMessage(error: any): string;
 }

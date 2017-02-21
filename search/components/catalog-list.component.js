@@ -41,6 +41,7 @@ let CatalogListComponent = class CatalogListComponent {
         this.itemSelected = new core_1.EventEmitter();
         this.contextMenuOpen = new core_1.EventEmitter();
         this.rowButtonClick = new core_1.EventEmitter();
+        this.itemCheckedChanged = new core_1.EventEmitter();
     }
     get pageCount() {
         if (this.serverSide)
@@ -58,7 +59,7 @@ let CatalogListComponent = class CatalogListComponent {
             this.catalogView.moveCurrentToFirst();
             if (this.catalogView.currentItem != null) {
                 this.currentItem = { id: this.catalogView.currentItem.id, codigo: this.catalogView.currentItem.codigo, activo: this.catalogView.currentItem.activo, estatus: this.catalogView.currentItem.estatus, data: this.catalogView.currentItem };
-                this.currentItemChanged.next(this.currentItem);
+                this.currentItemChanged.emit(this.currentItem);
             }
         }
     }
@@ -98,13 +99,13 @@ let CatalogListComponent = class CatalogListComponent {
         sender.addEventListener(sender.hostElement, "contextmenu", (e) => {
             let ht = sender.hitTest(e);
             sender.select(new wijmo_grid_1.CellRange(ht.row, ht.col), true);
-            self.contextMenuOpen.next(self.currentItem);
+            self.contextMenuOpen.emit(self.currentItem);
         });
         //Manejo de doble click
         sender.addEventListener(sender.hostElement, "dblclick", (e) => {
             let ht = sender.hitTest(e);
             if (ht.cellType == wijmo_grid_1.CellType.Cell) {
-                this.itemSelected.next(this.currentItem);
+                this.itemSelected.emit(this.currentItem);
             }
         });
         //Establecer el operador "comienza con" para todas cadenas
@@ -125,7 +126,7 @@ let CatalogListComponent = class CatalogListComponent {
             else
                 this.currentItem = null;
             //
-            self.currentItemChanged.next(self.currentItem);
+            self.currentItemChanged.emit(self.currentItem);
         }, self);
     }
     moveFirst() {
@@ -198,18 +199,24 @@ let CatalogListComponent = class CatalogListComponent {
             }
         }
         //
-        this.searchRequested.next(request);
+        this.searchRequested.emit(request);
         return request;
     }
     menuItemClicked(menu, args) {
         if (this.currentItem != null) {
             let menuItems = this.contextMenuItems.toArray();
             let item = menuItems[menu.selectedIndex];
-            this.contextMenuClick.next(item);
+            this.contextMenuClick.emit(item);
         }
     }
     onRowButtonClick(row) {
-        this.rowButtonClick.next(row);
+        this.rowButtonClick.emit(row);
+    }
+    onCellUpdated(args) {
+        //Si se editó la columna de selección
+        if (args.col == 0) {
+            this.itemCheckedChanged.emit(this.catalogView.currentItem);
+        }
     }
 };
 __decorate([
@@ -295,6 +302,10 @@ __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], CatalogListComponent.prototype, "rowButtonClick", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogListComponent.prototype, "itemCheckedChanged", void 0);
 CatalogListComponent = __decorate([
     core_1.Component({
         selector: 'azteca-catalog-list',
@@ -317,9 +328,12 @@ CatalogListComponent = __decorate([
                             [itemsSource]="catalogView"
                             (initialized)="initialized(grid, $event)"
                             (sortedColumn)="sortChanged(grid, $event)"
+                            (cellEditEnded)="onCellUpdated($event)"
                             [selectionMode]="'Row'"
-                            [wjContextMenu]="ctxMenu"                      
-                            [isReadOnly]="true">
+                            [wjContextMenu]="ctxMenu">
+
+                  <!--Selection Column-->
+                  <wj-flex-grid-column *ngIf="showSelectColumn" [header]="''" [allowResizing]="false" [binding]="'selected'" dataType="Boolean" [width]="45"></wj-flex-grid-column>
 
                   <!--Row Button-->
                   <wj-flex-grid-column *ngIf="showRowButton" [header]="''" [width]="45" [isReadOnly]="true">
@@ -330,8 +344,6 @@ CatalogListComponent = __decorate([
                       </template>
                   </wj-flex-grid-column>
 
-                  <!--Selection Column-->
-                  <wj-flex-grid-column *ngIf="showSelectColumn" [header]="''" [binding]="'selected'" dataType="Boolean" [width]="45"></wj-flex-grid-column>
 
                   <wj-flex-grid-filter #filter (filterChanged)="filterChanged(filter, $event)"></wj-flex-grid-filter>
                   <!--Agregar las columnas definidas en el template-->
@@ -339,6 +351,7 @@ CatalogListComponent = __decorate([
                                           [header]="col.header"
                                           [binding]="col.binding"
                                           [name]="col.name"
+                                          [isReadOnly]="true"
                                           [dataType]="col.dataType"
                                           [dataMap]="col.dataMap"
                                           [width]="col.width">

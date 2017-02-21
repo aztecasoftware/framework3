@@ -12,16 +12,24 @@ const core_1 = require("@angular/core");
 let ToolbarButtonDirective = class ToolbarButtonDirective {
     constructor() {
         this.icon = '';
+        this.class = '';
         this.enabled = true;
         this.type = 'default';
+        this.toolTip = '';
     }
     get buttonClass() {
+        let result = '';
         if (this.type) {
-            return 'btn btn-' + this.type;
+            result = 'btn btn-' + this.type;
         }
         else {
-            return 'btn btn-default';
+            result = 'btn btn-default';
         }
+        //Si se definió alguna clase, concatenar
+        if (this.class && this.class != '') {
+            result += ' ' + this.class;
+        }
+        return result;
     }
     ngOnChanges(changes) {
         if (changes['enabled']) {
@@ -42,12 +50,20 @@ __decorate([
 ], ToolbarButtonDirective.prototype, "icon", void 0);
 __decorate([
     core_1.Input(),
+    __metadata("design:type", String)
+], ToolbarButtonDirective.prototype, "class", void 0);
+__decorate([
+    core_1.Input(),
     __metadata("design:type", Boolean)
 ], ToolbarButtonDirective.prototype, "enabled", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], ToolbarButtonDirective.prototype, "type", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ToolbarButtonDirective.prototype, "toolTip", void 0);
 ToolbarButtonDirective = __decorate([
     core_1.Directive({
         selector: 'az-toolbar-button'

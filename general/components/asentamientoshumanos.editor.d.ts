@@ -1,0 +1,36 @@
+import { ChangeDetectorRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Location } from '@angular/common';
+import { DataMap } from 'wijmo/wijmo.grid';
+import { Context, CatalogItem } from '../../index';
+import { CatalogOptions } from '../../custom/index';
+import { CatalogEditor, EditorEventArgs } from '../../editors/index';
+import { AsentamientoHumanoInfo } from '../models/asentamientohumano';
+import { AsentamientoHumanoService } from '../services/asentamientohumano.service';
+import { TipoAsentamientoItem } from '../models/tipoasentamiento';
+import { TipoAsentamientoService } from '../services/tipoasentamiento.service';
+export declare class AsentamientosHumanosEditor extends CatalogEditor {
+    private router;
+    private route;
+    private formBuilder;
+    protected changeDetector: ChangeDetectorRef;
+    protected context: Context;
+    private location;
+    private asentamientoHumanoService;
+    private tipoAsentamienotService;
+    asentamientohumano: AsentamientoHumanoInfo;
+    tiposAsentamiento: TipoAsentamientoItem[];
+    tiposAsentamientoMap: DataMap;
+    constructor(router: Router, route: ActivatedRoute, formBuilder: FormBuilder, changeDetector: ChangeDetectorRef, context: Context, location: Location, asentamientoHumanoService: AsentamientoHumanoService, tipoAsentamienotService: TipoAsentamientoService);
+    onConfigureCatalog(options: CatalogOptions): void;
+    onCreatingItem(): void;
+    ngAfterViewInit(): void;
+    onViewingItem(id: number): void;
+    loadTipoAsentamiento(): void;
+    onCloningItem(id: number): void;
+    onLoadingItem(id: number): void;
+    onSavingItem(args: EditorEventArgs): void;
+    callMethod(args: Object): void;
+    onSelectedPoblacon(item: CatalogItem): void;
+}

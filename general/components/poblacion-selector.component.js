@@ -27,14 +27,12 @@ let PoblacionSelectorComponent = PoblacionSelectorComponent_1 = class PoblacionS
                 .then(info => {
                 this.selectedItem = info;
                 this.displayValue = info.nombre + ", " + info.municipio.estado.nombre;
-                this.propagateChange(itemID);
             })
                 .catch(error => this.handleError(error));
         }
         else {
             this.selectedItem = null;
             this.displayValue = "";
-            this.propagateChange(0);
         }
     }
     doSearch(request) {

@@ -13,6 +13,7 @@ const router_1 = require("@angular/router");
 const common_1 = require("@angular/common");
 //
 const index_1 = require("../../index");
+const index_2 = require("../../controls/index");
 const grupo_service_1 = require("../services/grupo.service");
 const usuarios_list_component_1 = require("../components/usuarios-list.component");
 let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseComponent {
@@ -32,6 +33,9 @@ let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseCo
     }
     ngAfterViewInit() {
         setTimeout(_ => this.refreshList());
+    }
+    onCurrentItemChanged(item) {
+        this.currentItem = item;
     }
     onToolbarButtonClick(button) {
         if (button.name == "ADD") {
@@ -53,24 +57,40 @@ let GrupoMiembrosComponent = class GrupoMiembrosComponent extends index_1.BaseCo
         })
             .catch(error => this.handleError(error));
     }
-    onSearchRequest(request) {
+    onSelectedUsersChanged(newUsers) {
+        this.grupoService.addMembers(this.idGrupo, newUsers)
+            .then(_ => {
+            this.context.app.hideSpinner();
+            this.alerts.showAlert('Los usuarios han sido agregados con éxito.', 'success');
+            this.refreshList();
+        })
+            .catch(error => this.handleError(error));
     }
-    onDeleteRow(item) {
+    onRemoveUser() {
         this.context.app.showSpinner();
-        this.grupoService.removeMember(this.idGrupo, item.id)
-            .then(_ => this.context.app.hideSpinner())
+        this.grupoService.removeMember(this.idGrupo, this.currentItem.id)
+            .then(_ => {
+            this.context.app.hideSpinner();
+            this.usuarios = this.usuarios.filter(item => item.id != this.currentItem.id);
+        })
             .catch(error => this.handleError(error));
     }
     applyPolicy(policy) {
     }
     handleError(error) {
         this.context.app.hideSpinner();
+        let message = this.getErrorMessage(error);
+        this.alerts.showAlert(message, 'danger');
     }
 };
 __decorate([
     core_1.ViewChild(usuarios_list_component_1.UsuariosListComponent),
     __metadata("design:type", usuarios_list_component_1.UsuariosListComponent)
 ], GrupoMiembrosComponent.prototype, "usuariosDialog", void 0);
+__decorate([
+    core_1.ViewChild(index_2.AlertsBarComponent),
+    __metadata("design:type", index_2.AlertsBarComponent)
+], GrupoMiembrosComponent.prototype, "alerts", void 0);
 GrupoMiembrosComponent = __decorate([
     core_1.Component({
         selector: 'security-grupo-miembros',
@@ -78,23 +98,25 @@ GrupoMiembrosComponent = __decorate([
       <div class="row">
           <div class="col-xs-12 col-md-10">
               <az-panel [header]="'Miembros del grupo -'">
-
+                  <alerts-bar></alerts-bar>
                   <!--Toolbar Principal-->
                   <az-toolbar (buttonClick)="onToolbarButtonClick($event)">
                       <az-toolbar-button [name]="'ADD'" [type]="'primary'" [text]="'Agregar Usuarios'" [icon]="'glyphicon glyphicon-plus'"></az-toolbar-button>
-                      <az-toolbar-button [name]="'REFRESH'" [text]="'Actualizar'" [icon]="'glyphicon glyphicon-refresh'"></az-toolbar-button>
+                      <az-toolbar-button [name]="'REFRESH'" [text]="'Actualizar'" [icon]="'glyphicon glyphicon-refresh'" [class]="'hidden-xs'"></az-toolbar-button>
                       <az-toolbar-button [name]="'CLOSE'" [text]="'Regresar'" [icon]="'glyphicon glyphicon-circle-arrow-left'"></az-toolbar-button>
                   </az-toolbar>
 
                   <!-- Lista de usuarios-->
-                  <azteca-catalog-list [catalogList]="usuarios"
-                                       (searchRequested)="onSearchRequest($event)"
+                  <azteca-catalog-list [catalogList]="usuarios"                                 
                                        [showRowButton]="true"
                                        [rowButtonIcon]="'glyphicon glyphicon-trash'"
+                                       (rowButtonClick)="onRemoveUser()"
+                                       (currentItemChanged)="onCurrentItemChanged($event)"
                                        [enabled]="enabled"
                                        [pageSize]="15"
                                        [serverSide]="false">
 
+                      <azteca-grid-column [header]="'ID'" [binding]="'id'" [width]="50"></azteca-grid-column>
                       <azteca-grid-column [header]="'Usuario'" [binding]="'codigo'" [width]="'20*'"></azteca-grid-column>
                       <azteca-grid-column [header]="'Nombre'" [binding]="'nombrePersona'" [width]="'40*'"></azteca-grid-column>
                       <azteca-grid-column [header]="'Estatus'" [binding]="'estatus'" [width]="'10*'"></azteca-grid-column>
@@ -106,7 +128,9 @@ GrupoMiembrosComponent = __decorate([
           </div>
       </div>
 
-      <security-usuarios-list [multiSelect]="true">
+      <security-usuarios-list (selectedItemsChanged)="onSelectedUsersChanged($event)"
+                              [excludedItems]="usuarios"
+                              [multiSelect]="true" >
 
       </security-usuarios-list>
     `

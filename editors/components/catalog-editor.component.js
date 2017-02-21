@@ -21,8 +21,8 @@ let CatalogEditorComponent = class CatalogEditorComponent {
         this.context = context;
         this.catalogService = catalogService;
         this.readonlyMode = false;
-        this.alerts = [];
         this.widthClass = [];
+        this.canceled = false;
         this.defaultOptions = { codigoAutogenerado: false };
         this.enabled = true;
         //
@@ -49,9 +49,9 @@ let CatalogEditorComponent = class CatalogEditorComponent {
         this.catalogService.getOptions()
             .then(options => {
             if (options != null)
-                this.configureCatalog.next(options);
+                this.configureCatalog.emit(options);
             else {
-                this.configureCatalog.next(this.defaultOptions);
+                this.configureCatalog.emit(this.defaultOptions);
             }
             this.context.app.hideSpinner();
         })
@@ -70,24 +70,20 @@ let CatalogEditorComponent = class CatalogEditorComponent {
         //Si identity es mayor a cero, se solicitará carga de información. Si es cero, se creará un nuevo elemento
         if (this.identity > 0) {
             if (this.readonlyMode)
-                this.viewingItem.next(this.identity);
+                this.viewingItem.emit(this.identity);
             else
-                this.loadingItem.next(this.identity);
+                this.loadingItem.emit(this.identity);
         }
         else {
             //Determinar si el nuevo elemento será en blanco o se clonará de otro elemento
             if (cloneId == 0)
-                this.creatingItem.next();
+                this.creatingItem.emit();
             else
-                this.cloningItem.next(cloneId);
+                this.cloningItem.emit(cloneId);
         }
     }
     showAlert(message, type) {
-        let newAlert = { msg: message, type: type, dismissOnTimeout: 5000, closable: true };
-        this.alerts.push(newAlert);
-    }
-    closeAlert(i) {
-        this.alerts.splice(i, 1);
+        this.alerts.showAlert(message, type);
     }
     saveHandler() {
         this.onSaveItem(false);
@@ -98,19 +94,22 @@ let CatalogEditorComponent = class CatalogEditorComponent {
     onSaveItem(closeEditor) {
         if (this.valid) {
             let args = { info: this.info, closeEditor: closeEditor };
-            this.savingItem.next(args);
+            this.savingItem.emit(args);
         }
         else {
             this.showAlert("Uno o varios campos no cumplen con las validaciones", "danger");
         }
     }
+    reset() {
+    }
     closeEditor() {
+        this.canceled = true;
         this.location.back();
     }
     onMenuItemClicked(menu, args) {
         let items = this.menuItems.toArray();
         let item = items[menu.selectedIndex];
-        this.menuItemClick.next(item);
+        this.menuItemClick.emit(item);
     }
     handleError(error) {
         this.context.app.hideSpinner();
@@ -164,6 +163,10 @@ __decorate([
     core_1.ContentChildren(index_2.MenuItemDirective),
     __metadata("design:type", core_1.QueryList)
 ], CatalogEditorComponent.prototype, "menuItems", void 0);
+__decorate([
+    core_1.ViewChild(index_2.AlertsBarComponent),
+    __metadata("design:type", index_2.AlertsBarComponent)
+], CatalogEditorComponent.prototype, "alerts", void 0);
 CatalogEditorComponent = __decorate([
     core_1.Component({
         selector: 'azteca-catalog-editor',
@@ -174,20 +177,24 @@ CatalogEditorComponent = __decorate([
               <div class="panel panel-default">
                   <div class="panel-heading">{{title}}</div>
 
+                  <alerts-bar></alerts-bar>
                   <!--Toolbar-->
 
                   <div class="btn-group">
                       <button type="submit" class="btn btn-primary" (click)="saveHandler()" [disabled]="!valid" *ngIf="enabled">
                           <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar
                       </button>
-                      <button type="button" class="btn btn-default" (click)="saveCloseHanlder()" [disabled]="!valid" *ngIf="enabled">
+                
+                      <button type="button" class="btn btn-default hidden-xs" (click)="saveCloseHanlder()" [disabled]="!valid" *ngIf="enabled">
                           <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span> Guardar y cerrar
                       </button>
+
                       <button type="button" class="btn btn-default" (click)="closeEditor()">
                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar
                       </button>
 
-                      <wj-menu #menu *ngIf="menuItems && menuItems.toArray().length > 0"
+
+                      <wj-menu #menu *ngIf="menuItems && menuItems.toArray().length > 0 && identity > 0"
                                (itemClicked)="onMenuItemClicked(menu, $event)"
                                [isDisabled]="!enabled"
                                [header]="'Opciones'">
@@ -203,11 +210,6 @@ CatalogEditorComponent = __decorate([
                       </wj-menu>
                   </div>
 
-                  <!--Pool de alertas-->
-                  <alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissible="true" [dismissOnTimeout]="alert.dismissOnTimeout" (close)="closeAlert(i)">
-                      {{ alert?.msg }}
-                  </alert>
-
                   <div class="panel-body">
                       <ng-content></ng-content>
                   </div>
@@ -215,8 +217,7 @@ CatalogEditorComponent = __decorate([
 
           </div>
       </div>
-    `,
-        changeDetection: core_1.ChangeDetectionStrategy.OnPush
+    `
     }),
     __metadata("design:paramtypes", [router_1.Router,
         router_1.ActivatedRoute,

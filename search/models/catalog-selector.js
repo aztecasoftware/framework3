@@ -20,6 +20,7 @@ class CatalogSelector extends index_1.BaseControl {
         this.pageIndex = 0;
         this.pageSize = 20;
         this.totalRows = 0;
+        this.itemChanged = new core_1.EventEmitter();
         this.propagateChange = (_) => { };
     }
     get selectedID() {
@@ -46,6 +47,8 @@ class CatalogSelector extends index_1.BaseControl {
             this.loadItem(item.id);
         else
             this.loadItem(0);
+        this.propagateChange(item.id);
+        this.itemChanged.emit(item);
     }
 }
 __decorate([
@@ -53,4 +56,8 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [Number])
 ], CatalogSelector.prototype, "selectedID", null);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], CatalogSelector.prototype, "itemChanged", void 0);
 exports.CatalogSelector = CatalogSelector;

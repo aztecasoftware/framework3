@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { BaseControl } from '../../controls/index';
 import { Context, CatalogItem } from '../../index';
@@ -9,6 +10,7 @@ export declare abstract class CatalogSelector extends BaseControl implements Con
     pageSize: number;
     totalRows: number;
     selectedID: number;
+    itemChanged: EventEmitter<CatalogItem>;
     constructor(context: Context);
     abstract loadItem(itemID: number): void;
     writeValue(value: any): void;
